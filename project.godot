@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="fart balls game chud evil"
+run/main_scene="uid://cio1r2gxqj6hy"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 

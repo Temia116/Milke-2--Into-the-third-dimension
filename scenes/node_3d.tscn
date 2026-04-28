@@ -1,15 +1,14 @@
 [gd_scene format=3 uid="uid://cio1r2gxqj6hy"]
 
 [ext_resource type="PackedScene" uid="uid://boqrni1yve7dy" path="res://Assets/Cow.fbx" id="1_ns6u7"]
-[ext_resource type="PackedScene" uid="uid://duudiev2wq5tu" path="res://Assets/TEAL BALL (peg).glb" id="2_5t4e2"]
 
 [node name="Node3D" type="Node3D" unique_id=1256403829]
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=996338804]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5121788, 7.372115)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 7.372)
 
 [node name="Cow" parent="." unique_id=1644535265 instance=ExtResource("1_ns6u7")]
-transform = Transform3D(-1.3113416e-08, 0, -0.29999998, 0, 0.29999998, 0, 0.29999998, 0, -1.3113416e-08, 0, 2.6283705, 0)
+transform = Transform3D(-2.6226834e-08, 0, -0.6, 0, 0.6, 0, 0.6, 0, -2.6226834e-08, -0.8319354, 1.6944864, 0)
 
-[node name="TEAL BALL (peg)" parent="." unique_id=1300227685 instance=ExtResource("2_5t4e2")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.8928014, 0, 0)
+[node name="Marker3D" type="Marker3D" parent="Cow" unique_id=1824261757]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, -6.144277e-08, 1.8418448, -1.4056467)
