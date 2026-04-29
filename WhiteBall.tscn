@@ -6,6 +6,9 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_cet3u"]
 
 [node name="RigidBody3D" type="RigidBody3D" unique_id=1729041865]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+contact_monitor = true
+max_contacts_reported = 4
 script = ExtResource("1_vdapn")
 
 [node name="WHITE BALL (THE ONE THAT THE UTTER SHOOTS OR SOME)" parent="." unique_id=859911269 instance=ExtResource("1_cet3u")]
