@@ -18,6 +18,7 @@ sky = SubResource("Sky_a6664")
 sky_rotation = Vector3(0, 2.7419124, 0)
 
 [node name="Node3D" type="Node3D" unique_id=1256403829]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.061877728, 0)
 script = ExtResource("1_5t4e2")
 ball_scene = ExtResource("2_5t4e2")
 
@@ -40,3 +41,198 @@ omni_range = 40.0
 
 [node name="BluePeg" parent="." unique_id=1962327079 instance=ExtResource("5_oqwcg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+
+[node name="BluePeg5" parent="." unique_id=1296871787 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 3, 0)
+
+[node name="BluePeg2" parent="." unique_id=518147909 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3, 0)
+
+[node name="BluePeg3" parent="." unique_id=813263032 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 3, 0)
+
+[node name="BluePeg4" parent="." unique_id=1973398206 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 3, 0)
+
+[node name="BluePeg6" parent="." unique_id=590363513 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 3, 0)
+
+[node name="BluePeg41" parent="." unique_id=1940289767 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 3, 0)
+
+[node name="BluePeg7" parent="." unique_id=1815510056 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3, 0)
+
+[node name="BluePeg8" parent="." unique_id=119512028 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 3, 0)
+
+[node name="BluePeg9" parent="." unique_id=1165685334 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 3, 0)
+
+[node name="BluePeg10" parent="." unique_id=1286873631 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 3, 0)
+
+[node name="BluePeg11" parent="." unique_id=2013173175 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
+
+[node name="BluePeg12" parent="." unique_id=1489268606 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 1, 0)
+
+[node name="BluePeg13" parent="." unique_id=2100857644 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, 0)
+
+[node name="BluePeg14" parent="." unique_id=3445810 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 0)
+
+[node name="BluePeg15" parent="." unique_id=309247402 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1, 0)
+
+[node name="BluePeg16" parent="." unique_id=359279059 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 1, 0)
+
+[node name="BluePeg42" parent="." unique_id=125125976 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 1, 0)
+
+[node name="BluePeg17" parent="." unique_id=86197714 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0)
+
+[node name="BluePeg18" parent="." unique_id=83319562 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1, 0)
+
+[node name="BluePeg19" parent="." unique_id=991180234 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1, 0)
+
+[node name="BluePeg20" parent="." unique_id=1821800064 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, 0)
+
+[node name="BluePeg21" parent="." unique_id=545251094 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="BluePeg22" parent="." unique_id=1324859946 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -1, 0)
+
+[node name="BluePeg23" parent="." unique_id=352557366 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -1, 0)
+
+[node name="BluePeg24" parent="." unique_id=38192791 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -1, 0)
+
+[node name="BluePeg25" parent="." unique_id=144714551 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -1, 0)
+
+[node name="BluePeg26" parent="." unique_id=1848005008 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -1, 0)
+
+[node name="BluePeg43" parent="." unique_id=1909377296 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, -1, 0)
+
+[node name="BluePeg27" parent="." unique_id=1822662489 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -1, 0)
+
+[node name="BluePeg28" parent="." unique_id=1679819870 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, -1, 0)
+
+[node name="BluePeg29" parent="." unique_id=149976810 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, -1, 0)
+
+[node name="BluePeg30" parent="." unique_id=1285008536 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -1, 0)
+
+[node name="BluePeg31" parent="." unique_id=1374896405 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -3, 0)
+
+[node name="BluePeg32" parent="." unique_id=48968333 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, -3, 0)
+
+[node name="BluePeg33" parent="." unique_id=374843421 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -3, 0)
+
+[node name="BluePeg34" parent="." unique_id=463255719 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -3, 0)
+
+[node name="BluePeg35" parent="." unique_id=709752573 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3, 0)
+
+[node name="BluePeg36" parent="." unique_id=703061468 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, -3, 0)
+
+[node name="BluePeg44" parent="." unique_id=1715028753 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, -3, 0)
+
+[node name="BluePeg37" parent="." unique_id=464027807 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -3, 0)
+
+[node name="BluePeg38" parent="." unique_id=1552718734 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, -3, 0)
+
+[node name="BluePeg39" parent="." unique_id=29953389 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -3, 0)
+
+[node name="BluePeg40" parent="." unique_id=1698763151 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -3, 0)
+
+[node name="BluePeg45" parent="." unique_id=759524384 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+
+[node name="BluePeg46" parent="." unique_id=66133282 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -5, 0)
+
+[node name="BluePeg47" parent="." unique_id=1585064990 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -5, 0)
+
+[node name="BluePeg48" parent="." unique_id=1880118851 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -5, 0)
+
+[node name="BluePeg49" parent="." unique_id=325553927 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -5, 0)
+
+[node name="BluePeg50" parent="." unique_id=1750524238 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -5, 0)
+
+[node name="BluePeg51" parent="." unique_id=1844912888 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, -5, 0)
+
+[node name="BluePeg52" parent="." unique_id=987227793 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -5, 0)
+
+[node name="BluePeg53" parent="." unique_id=387500679 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, -5, 0)
+
+[node name="BluePeg54" parent="." unique_id=1463522403 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, -5, 0)
+
+[node name="BluePeg55" parent="." unique_id=1761583284 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -5, 0)
+
+[node name="BluePeg56" parent="." unique_id=2038539411 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -7, 0)
+
+[node name="BluePeg57" parent="." unique_id=1704038154 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, -7, 0)
+
+[node name="BluePeg58" parent="." unique_id=533941278 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -7, 0)
+
+[node name="BluePeg59" parent="." unique_id=1479126181 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -7, 0)
+
+[node name="BluePeg60" parent="." unique_id=652443487 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -7, 0)
+
+[node name="BluePeg61" parent="." unique_id=976116619 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, -7, 0)
+
+[node name="BluePeg62" parent="." unique_id=1266029704 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, -7, 0)
+
+[node name="BluePeg63" parent="." unique_id=856151580 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -7, 0)
+
+[node name="BluePeg64" parent="." unique_id=97502222 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, -7, 0)
+
+[node name="BluePeg65" parent="." unique_id=1422443791 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -7, 0)
+
+[node name="BluePeg66" parent="." unique_id=1443838846 instance=ExtResource("5_oqwcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -7, 0)
