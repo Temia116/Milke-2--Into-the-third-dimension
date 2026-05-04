@@ -4,8 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://boqrni1yve7dy" path="res://Assets/Cow.fbx" id="1_ns6u7"]
 [ext_resource type="PackedScene" uid="uid://dyuicrvwn26yu" path="res://WhiteBall.tscn" id="2_5t4e2"]
 [ext_resource type="Texture2D" uid="uid://cqeyib6b8xl5p" path="res://Assets/wmremove-transformed.jpeg" id="4_xvgsr"]
-[ext_resource type="Script" uid="uid://crmog3p0rdnfy" path="res://PegSpawner.gd" id="5_oqwcg"]
-[ext_resource type="PackedScene" uid="uid://cg6182onefv5p" path="res://BluePeg.tscn" id="6_a6664"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_oqwcg"]
 panorama = ExtResource("4_xvgsr")
@@ -41,7 +39,3 @@ environment = SubResource("Environment_10v3s")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.215902, 3.2088094)
 light_energy = 2.99
 omni_range = 40.0
-
-[node name="PegSpawner" type="Node3D" parent="." unique_id=436399546]
-script = ExtResource("5_oqwcg")
-blue_peg_scene = ExtResource("6_a6664")

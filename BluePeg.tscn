@@ -14,6 +14,7 @@ radius = 0.47064215
 radius = 0.4665197
 
 [node name="BluePeg" type="Area3D" unique_id=1296871787]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 script = ExtResource("1_8xdbv")
 
 [node name="TEAL BALL (peg)" parent="." unique_id=1300227685 instance=ExtResource("2_tbq5h")]

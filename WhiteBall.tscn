@@ -49,6 +49,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_t815q")
 
 [node name="RigidBody3D" type="RigidBody3D" unique_id=1729041865]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
 physics_material_override = SubResource("PhysicsMaterial_bouncing_ball")
 contact_monitor = true
 max_contacts_reported = 4

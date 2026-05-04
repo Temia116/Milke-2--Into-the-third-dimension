@@ -4,7 +4,12 @@ extends Area3D
 var hit: bool = false
 
 func _ready():
-	body_entered.connect(_on_body_entered)
+	# Force collision shape to correct size
+	var shape = $CollisionShape3D.shape
+	if shape is SphereShape3D:
+		shape.radius = 0.5  # adjust this to match your mesh size
+	
+	self.body_entered.connect(_on_body_entered)
 
 func _on_body_entered(body):
 	if body is RigidBody3D and not hit:
