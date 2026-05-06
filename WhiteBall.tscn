@@ -4,7 +4,7 @@
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bouncing_ball"]
 friction = 0.0
-bounce = 0.15
+bounce = 0.2
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_cet3u"]
 radius = 0.83632886
@@ -51,6 +51,7 @@ shadow_mesh = SubResource("ArrayMesh_t815q")
 [node name="RigidBody3D" type="RigidBody3D" unique_id=1729041865]
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
 physics_material_override = SubResource("PhysicsMaterial_bouncing_ball")
+gravity_scale = 0.8
 contact_monitor = true
 max_contacts_reported = 4
 script = ExtResource("1_vdapn")

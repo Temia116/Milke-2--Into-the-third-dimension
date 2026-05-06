@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bkv6tjg1ufssx"]
+
+[ext_resource type="Script" uid="uid://s26g3nem58om" path="res://HUD.gd" id="1_k5de2"]
+
+[node name="HUD" type="CanvasLayer" unique_id=289833468]
+script = ExtResource("1_k5de2")
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=1661182190]
+offset_right = 40.0
+offset_bottom = 23.0
+horizontal_alignment = 2
+
+[node name="BallsContainer" type="Control" parent="." unique_id=872525949]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BallsLabel" type="Label" parent="BallsContainer" unique_id=380633594]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0

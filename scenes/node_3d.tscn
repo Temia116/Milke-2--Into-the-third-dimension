@@ -22,8 +22,6 @@ sky_rotation = Vector3(0, 2.7419124, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.061877728, 0)
 script = ExtResource("1_5t4e2")
 ball_scene = ExtResource("2_5t4e2")
-launch_speed = null
-max_angle_deg = null
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=996338804]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 13.5)
