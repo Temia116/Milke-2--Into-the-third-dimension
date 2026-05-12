@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://cqeyib6b8xl5p" path="res://Assets/wmremove-transformed.jpeg" id="4_xvgsr"]
 [ext_resource type="Script" uid="uid://crmog3p0rdnfy" path="res://PegSpawner.gd" id="5_oqwcg"]
 [ext_resource type="PackedScene" uid="uid://cg6182onefv5p" path="res://BluePeg.tscn" id="6_a6664"]
+[ext_resource type="PackedScene" uid="uid://bkv6tjg1ufssx" path="res://HUD.tscn" id="7_10v3s"]
+[ext_resource type="PackedScene" uid="uid://bieqhn7vyuxbu" path="res://GameOver.tscn" id="8_cptob"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_oqwcg"]
 panorama = ExtResource("4_xvgsr")
@@ -43,3 +45,7 @@ omni_range = 40.0
 [node name="PegSpawner" type="Node3D" parent="." unique_id=436399546]
 script = ExtResource("5_oqwcg")
 blue_peg_scene = ExtResource("6_a6664")
+
+[node name="HUD" parent="." unique_id=289833468 instance=ExtResource("7_10v3s")]
+
+[node name="Gameover" parent="." unique_id=1886323533 instance=ExtResource("8_cptob")]

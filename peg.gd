@@ -18,8 +18,7 @@ func _on_body_entered(body):
 		body.ball_exited.connect(_on_ball_exited)
 
 func _on_ball_exited():
-	if hit_tween:
-		hit_tween.kill()
+	GameManager.on_peg_hit(peg_type)  # ADD THIS
 	$StaticBody3D/CollisionShape3D.disabled = true
 	$CollisionShape3D.disabled = true
 	var tween = create_tween()

@@ -50,7 +50,9 @@ func on_ball_launched():
 func on_ball_lost():
 	balls_remaining -= 1
 	balls_changed.emit(balls_remaining)
-	current_state = State.IDLE
-	if balls_remaining <= 0 and orange_pegs_hit < total_orange_pegs:
-		game_over.emit()
+
+
+func _process(_delta):
+	if balls_remaining <= 0 and current_state != State.GAME_OVER:
 		current_state = State.GAME_OVER
+		game_over.emit()
