@@ -3,30 +3,16 @@
 [ext_resource type="Script" uid="uid://fd3fskoeixvy" path="res://peg.gd" id="1_8xdbv"]
 [ext_resource type="PackedScene" uid="uid://duudiev2wq5tu" path="res://Assets/TEAL BALL (peg).glb" id="2_tbq5h"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8xdbv"]
-friction = 0.0
-bounce = 0.15
+[sub_resource type="SphereShape3D" id="SphereShape3D_8xdbv"]
+radius = 0.5296112
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_j7lsp"]
-radius = 0.47064215
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_tbq5h"]
-radius = 0.4665197
-
-[node name="BluePeg" type="Area3D" unique_id=1296871787]
+[node name="BluePeg" type="StaticBody3D" unique_id=2026480295]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 script = ExtResource("1_8xdbv")
 
 [node name="TEAL BALL (peg)" parent="." unique_id=1300227685 instance=ExtResource("2_tbq5h")]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=585994932]
-physics_material_override = SubResource("PhysicsMaterial_8xdbv")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=567340011]
-transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, 0, 0)
-shape = SubResource("SphereShape3D_j7lsp")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1991892857]
-transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, 0, 0)
-shape = SubResource("SphereShape3D_tbq5h")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1073096763]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+shape = SubResource("SphereShape3D_8xdbv")

@@ -1,25 +1,24 @@
-extends Area3D
+extends StaticBody3D
 
 @export var peg_type: String = "blue"
 var hit: bool = false
-var hit_tween: Tween
 
 func _ready():
-	body_entered.connect(_on_body_entered)
+	if peg_type == "orange":
+		add_to_group("orange_pegs")
 
-func _on_body_entered(body):
-	if body is RigidBody3D and not hit:
-		hit = true
-		if hit_tween:
-			hit_tween.kill()
-		hit_tween = create_tween()
-		hit_tween.tween_property(self, "scale", Vector3(1.6, 1.6, 1.6), 0.08)
-		hit_tween.tween_property(self, "scale", Vector3(1.2, 1.2, 1.2), 0.08)
-		body.ball_exited.connect(_on_ball_exited)
+func on_hit():
+	if hit:
+		return
+	hit = true
+	var tween = create_tween()
+	tween.tween_property(self, "scale", Vector3(1.6, 1.6, 1.6), 0.08)
+	tween.tween_property(self, "scale", Vector3(1.2, 1.2, 1.2), 0.08)
 
-func _on_ball_exited():
-	GameManager.on_peg_hit(peg_type)  # ADD THIS
-	$StaticBody3D/CollisionShape3D.disabled = true
+func on_ball_exited():
+	if not hit:
+		return
+	GameManager.on_peg_hit(peg_type)
 	$CollisionShape3D.disabled = true
 	var tween = create_tween()
 	tween.tween_property(self, "scale", Vector3(1.4, 1.4, 1.4), 0.1)

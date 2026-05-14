@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://crmog3p0rdnfy" path="res://PegSpawner.gd" id="5_oqwcg"]
 [ext_resource type="PackedScene" uid="uid://cg6182onefv5p" path="res://BluePeg.tscn" id="6_a6664"]
 [ext_resource type="PackedScene" uid="uid://bkv6tjg1ufssx" path="res://HUD.tscn" id="7_10v3s"]
+[ext_resource type="PackedScene" uid="uid://bgcvjd2tb2kv0" path="res://OrangePeg.tscn" id="7_b2yaj"]
 [ext_resource type="PackedScene" uid="uid://bieqhn7vyuxbu" path="res://GameOver.tscn" id="8_cptob"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_oqwcg"]
@@ -27,6 +28,8 @@ ball_scene = ExtResource("2_5t4e2")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=996338804]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 13.5)
+projection = 1
+size = 20.523
 
 [node name="Cow" parent="." unique_id=1644535265 instance=ExtResource("1_ns6u7")]
 transform = Transform3D(-2.6226834e-08, 0, -0.6, 0, 0.6, 0, 0.6, 0, -2.6226834e-08, 0, 7, 0)
@@ -38,13 +41,19 @@ transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, -6
 environment = SubResource("Environment_10v3s")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1086340402]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.215902, 3.2088094)
-light_energy = 2.99
-omni_range = 40.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2159019, 6.2088094)
+light_energy = 6.317
+omni_range = 40.14
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="." unique_id=1132364192]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 8.215902, 6.2088094)
+light_energy = 6.317
+omni_range = 40.14
 
 [node name="PegSpawner" type="Node3D" parent="." unique_id=436399546]
 script = ExtResource("5_oqwcg")
 blue_peg_scene = ExtResource("6_a6664")
+orange_peg_scene = ExtResource("7_b2yaj")
 
 [node name="HUD" parent="." unique_id=289833468 instance=ExtResource("7_10v3s")]
 
