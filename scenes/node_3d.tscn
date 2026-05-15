@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dsfgcf554itnu" path="res://scenes/node_3d.gd" id="1_5t4e2"]
 [ext_resource type="PackedScene" uid="uid://boqrni1yve7dy" path="res://Assets/Cow.fbx" id="1_ns6u7"]
 [ext_resource type="PackedScene" uid="uid://dyuicrvwn26yu" path="res://WhiteBall.tscn" id="2_5t4e2"]
-[ext_resource type="Texture2D" uid="uid://cqeyib6b8xl5p" path="res://Assets/wmremove-transformed.jpeg" id="4_xvgsr"]
+[ext_resource type="Texture2D" uid="uid://cyuqer3cgq7th" path="res://Assets/grasslands_sunset_4k.exr" id="4_b2yaj"]
 [ext_resource type="Script" uid="uid://crmog3p0rdnfy" path="res://PegSpawner.gd" id="5_oqwcg"]
 [ext_resource type="PackedScene" uid="uid://cg6182onefv5p" path="res://BluePeg.tscn" id="6_a6664"]
 [ext_resource type="PackedScene" uid="uid://bkv6tjg1ufssx" path="res://HUD.tscn" id="7_10v3s"]
@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bieqhn7vyuxbu" path="res://GameOver.tscn" id="8_cptob"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_oqwcg"]
-panorama = ExtResource("4_xvgsr")
+panorama = ExtResource("4_b2yaj")
 
 [sub_resource type="Sky" id="Sky_a6664"]
 sky_material = SubResource("PanoramaSkyMaterial_oqwcg")
@@ -27,8 +27,7 @@ script = ExtResource("1_5t4e2")
 ball_scene = ExtResource("2_5t4e2")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=996338804]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 13.5)
-projection = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15.5)
 size = 20.523
 
 [node name="Cow" parent="." unique_id=1644535265 instance=ExtResource("1_ns6u7")]
