@@ -6,7 +6,7 @@ var hit: bool = false
 func _ready():
 	if peg_type == "orange":
 		add_to_group("orange_pegs")
-
+		print("Added orange peg to group")
 func on_hit():
 	if hit:
 		return

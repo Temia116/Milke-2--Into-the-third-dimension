@@ -35,7 +35,7 @@ func spawn_level(layout: Array):
 		if layout[i][2] == "blue":
 			blue_indices.append(i)
 	
-	var orange_count = max(1, int(blue_indices.size() * 0.15))
+	var orange_count = max(1, int(blue_indices.size() * 0.20))
 	blue_indices.shuffle()
 	var orange_indices = blue_indices.slice(0, orange_count)
 	
@@ -43,14 +43,12 @@ func spawn_level(layout: Array):
 	print("Orange count: ", orange_count)
 	print("Orange indices: ", orange_indices)
 	
-	# Second pass: spawn pegs
 	for i in range(layout.size()):
 		var entry = layout[i]
 		var x = entry[0]
 		var y = entry[1]
 		var type = entry[2]
 		
-		# Override blue to orange if selected
 		if i in orange_indices:
 			type = "orange"
 		
@@ -59,6 +57,7 @@ func spawn_level(layout: Array):
 			continue
 		
 		var peg = peg_scene.instantiate()
+		peg.peg_type = type  # SET BEFORE add_child
 		add_child(peg)
 		peg.position = Vector3(x, y, 0.0)
 

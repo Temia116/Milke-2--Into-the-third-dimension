@@ -16,15 +16,17 @@ var score: int = 0
 var multiplier: int = 1
 
 # --- Balls ---
-var balls_remaining: int = 10
+var balls_remaining: int = 100
 
 # --- Pegs ---
 var total_orange_pegs: int = 0
 var orange_pegs_hit: int = 0
 
 func _ready():
-	# Count orange pegs at level start
+	await get_tree().create_timer(0.1).timeout
 	total_orange_pegs = get_tree().get_nodes_in_group("orange_pegs").size()
+	print("Total orange pegs: ", total_orange_pegs)
+	balls_changed.emit(balls_remaining)
 
 func add_score(base_points: int):
 	score += base_points * multiplier

@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://dbhev6405q52o"]
+
+[ext_resource type="Script" uid="uid://b86rxgobxgyw8" path="res://WinScreen.gd" id="1_a03an"]
+
+[node name="WinScreen" type="CanvasLayer" unique_id=2056049492]
+script = ExtResource("1_a03an")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1336406552]
+offset_right = 1923.0
+offset_bottom = 1082.0
+color = Color(1, 0.84313726, 0, 1)
+
+[node name="Label" type="Label" parent="." unique_id=864837389]
+offset_left = 838.0
+offset_top = 378.0
+offset_right = 1072.0
+offset_bottom = 447.0
+theme_override_font_sizes/font_size = 50
+text = "YOU WIN!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=1637894882]
+offset_left = 838.0
+offset_top = 437.0
+offset_right = 1010.0
+offset_bottom = 506.0
+theme_override_font_sizes/font_size = 50
+text = "SCORE:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="." unique_id=1501760177]
+offset_left = 810.0
+offset_top = 524.0
+offset_right = 1109.0
+offset_bottom = 601.0
+theme_override_font_sizes/font_size = 50
+text = "PLAY AGAIN"
