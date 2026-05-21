@@ -16,7 +16,7 @@ var score: int = 0
 var multiplier: int = 1
 
 # --- Balls ---
-var balls_remaining: int = 100
+var balls_remaining: int = 15
 
 # --- Pegs ---
 var total_orange_pegs: int = 0
