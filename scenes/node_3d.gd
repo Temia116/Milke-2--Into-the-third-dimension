@@ -10,112 +10,138 @@ var can_shoot: bool = true
 var aim_mesh: ImmediateMesh
 var aim_mesh_instance: MeshInstance3D
 
+const GRAVITY_SCALE: float = 1.75
+const GRAVITY: float = -9.8
+
 func _ready():
 	aim_mesh = ImmediateMesh.new()
 	aim_mesh_instance = MeshInstance3D.new()
 	aim_mesh_instance.mesh = aim_mesh
-	
+
 	var mat = StandardMaterial3D.new()
 	mat.albedo_color = Color(0.0, 0.5, 1.0)
 	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	mat.vertex_color_use_as_albedo = true
 	aim_mesh_instance.material_override = mat
 	add_child(aim_mesh_instance)
-	print("Aim line setup done")
 
-var current_shoot_dir: Vector3 = Vector3.DOWN
-
-func _process(_delta):
-	# Calculate once per frame and cache
-	current_shoot_dir = _get_shoot_dir()
-	_draw_aim_line()
-
-func _get_shoot_dir() -> Vector3:
+func _get_cursor_world_pos() -> Vector3:
 	var mouse_pos = get_viewport().get_mouse_position()
 	var from = camera.project_ray_origin(mouse_pos)
 	var dir = camera.project_ray_normal(mouse_pos)
-	
-	# For orthographic camera, project onto the plane at udder Z
 	var udder_z = udder_spawn.global_position.z
 	if abs(dir.z) > 0.001:
 		var t = (udder_z - from.z) / dir.z
-		var cursor_world_pos = from + dir * t
-		return (cursor_world_pos - udder_spawn.global_position).normalized()
+		return from + dir * t
+	return udder_spawn.global_position + dir * 10.0
+
+func _get_launch_velocity() -> Vector3:
+	var origin = udder_spawn.global_position
+	var target = _get_cursor_world_pos()
+	var to_target = target - origin
+
+	# Horizontal displacement (X axis in this 2D-ish plane)
+	var horiz = Vector3(to_target.x, 0, 0)
+	var horiz_dist = horiz.length()
+	var vert_dist = to_target.y
+
+	# Use projectile formula to find angle that reaches target at launch_speed
+	# v^2 = launch_speed^2, g = effective gravity
+	var g = abs(GRAVITY * GRAVITY_SCALE)
+	var v = launch_speed
+	var v2 = v * v
+	var discriminant = v2 * v2 - g * (g * horiz_dist * horiz_dist + 2.0 * vert_dist * v2)
+
+	var launch_dir: Vector3
+	if horiz_dist < 0.01:
+		# Shooting nearly straight up
+		launch_dir = Vector3(0, 1, 0)
+	elif discriminant < 0:
+		# Out of range — aim as steeply as possible toward target
+		launch_dir = (to_target.normalized() + Vector3(0, 1, 0)).normalized()
 	else:
-		return dir.normalized()
+		# Pick the high arc angle for a nice lob
+		var angle = atan2(v2 + sqrt(discriminant), g * horiz_dist)
+		var horiz_dir = horiz.normalized()
+		launch_dir = horiz_dir * cos(angle) + Vector3(0, sin(angle), 0)
+
+	return launch_dir * launch_speed
+
+func _process(_delta):
+	_draw_aim_line()
 
 func _shoot():
 	if ball_scene == null:
 		push_error("No ball_scene assigned!")
 		return
-	
+
 	can_shoot = false
-	
+
 	var ball = ball_scene.instantiate()
 	get_tree().root.add_child(ball)
 	ball.global_position = udder_spawn.global_position
-	
-	# Add upward arc compensation based on distance to target
-	var mouse_pos = get_viewport().get_mouse_position()
-	var from = camera.project_ray_origin(mouse_pos)
-	var dir = camera.project_ray_normal(mouse_pos)
-	var udder_z = udder_spawn.global_position.z
-	var t = (udder_z - from.z) / dir.z
-	var cursor_world_pos = from + dir * t
-	var distance = udder_spawn.global_position.distance_to(cursor_world_pos)
-	
-	# Arc upward proportional to distance
-	var arc_strength = distance * 0.15
-	var launch_dir = current_shoot_dir + Vector3(0, arc_strength, 0)
-	launch_dir = launch_dir.normalized()
-	
-	ball.linear_velocity = launch_dir * launch_speed
-	ball.gravity_scale = 1.75
+	ball.linear_velocity = _get_launch_velocity()
+	ball.gravity_scale = GRAVITY_SCALE
 	ball.tree_exited.connect(_on_ball_exited)
+
 func _draw_aim_line():
 	aim_mesh.clear_surfaces()
-	
+
 	if not can_shoot:
 		return
-	
+
 	var pos = udder_spawn.global_position
-	var shoot_dir = current_shoot_dir  # use cached direction
-	
-	# Raycast to find hit point
+	var velocity = _get_launch_velocity()
+	var gravity_vec = Vector3(0, GRAVITY * GRAVITY_SCALE, 0)
+
 	var space = get_world_3d().direct_space_state
-	var query = PhysicsRayQueryParameters3D.create(pos, pos + shoot_dir * 30.0)
-	query.collide_with_areas = true
-	query.collide_with_bodies = true
-	query.collision_mask = 1
-	var result = space.intersect_ray(query)
-	
-	var end_point = pos + shoot_dir * 30.0
-	if result.size() > 0:
-		end_point = result.position
-	
 	aim_mesh.surface_begin(Mesh.PRIMITIVE_LINES)
-	
-	# Straight dotted line stopping at hit point
-	var total_dist = pos.distance_to(end_point)
+
+	var sim_pos = pos
+	var sim_vel = velocity
+	var sim_dt = 0.04
+	var steps = 50
+	var dot_accum = 0.0
 	var dot_spacing = 0.4
-	var current_dist = 0.0
-	while current_dist < total_dist:
-		var point = pos + shoot_dir * current_dist
-		aim_mesh.surface_add_vertex(point)
-		aim_mesh.surface_add_vertex(point + shoot_dir * 0.15)
-		current_dist += dot_spacing
-	
-	# Circle at hit point
-	if result.size() > 0:
-		var hit = result.position
+	var dot_len = 0.15
+	var hit_pos: Vector3 = Vector3.ZERO
+	var hit_found = false
+
+	for i in range(steps):
+		var next_pos = sim_pos + sim_vel * sim_dt + 0.5 * gravity_vec * sim_dt * sim_dt
+		sim_vel += gravity_vec * sim_dt
+
+		var query = PhysicsRayQueryParameters3D.create(sim_pos, next_pos)
+		query.collide_with_areas = true
+		query.collide_with_bodies = true
+		query.collision_mask = 1
+		var result = space.intersect_ray(query)
+		if result.size() > 0:
+			hit_pos = result.position
+			hit_found = true
+			break
+
+		var seg_len = sim_pos.distance_to(next_pos)
+		dot_accum += seg_len
+		while dot_accum >= dot_spacing:
+			dot_accum -= dot_spacing
+			var frac = 1.0 - (dot_accum / seg_len)
+			var dot_start = sim_pos.lerp(next_pos, frac)
+			var dot_end = sim_pos.lerp(next_pos, min(frac + dot_len / seg_len, 1.0))
+			aim_mesh.surface_add_vertex(dot_start)
+			aim_mesh.surface_add_vertex(dot_end)
+
+		sim_pos = next_pos
+
+	if hit_found:
 		var radius = 0.3
 		var segments = 16
 		for i in range(segments):
 			var angle_a = (float(i) / segments) * TAU
 			var angle_b = (float(i + 1) / segments) * TAU
-			aim_mesh.surface_add_vertex(hit + Vector3(cos(angle_a) * radius, sin(angle_a) * radius, 0))
-			aim_mesh.surface_add_vertex(hit + Vector3(cos(angle_b) * radius, sin(angle_b) * radius, 0))
-	
+			aim_mesh.surface_add_vertex(hit_pos + Vector3(cos(angle_a) * radius, sin(angle_a) * radius, 0))
+			aim_mesh.surface_add_vertex(hit_pos + Vector3(cos(angle_b) * radius, sin(angle_b) * radius, 0))
+
 	aim_mesh.surface_end()
 
 func _input(event):
