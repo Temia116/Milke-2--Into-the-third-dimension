@@ -39,33 +39,9 @@ func _get_launch_velocity() -> Vector3:
 	var origin = udder_spawn.global_position
 	var target = _get_cursor_world_pos()
 	var to_target = target - origin
-
-	# Horizontal displacement (X axis in this 2D-ish plane)
-	var horiz = Vector3(to_target.x, 0, 0)
-	var horiz_dist = horiz.length()
-	var vert_dist = to_target.y
-
-	# Use projectile formula to find angle that reaches target at launch_speed
-	# v^2 = launch_speed^2, g = effective gravity
-	var g = abs(GRAVITY * GRAVITY_SCALE)
-	var v = launch_speed
-	var v2 = v * v
-	var discriminant = v2 * v2 - g * (g * horiz_dist * horiz_dist + 2.0 * vert_dist * v2)
-
-	var launch_dir: Vector3
-	if horiz_dist < 0.01:
-		# Shooting nearly straight up
-		launch_dir = Vector3(0, 1, 0)
-	elif discriminant < 0:
-		# Out of range — aim as steeply as possible toward target
-		launch_dir = (to_target.normalized() + Vector3(0, 1, 0)).normalized()
-	else:
-		# Pick the high arc angle for a nice lob
-		var angle = atan2(v2 + sqrt(discriminant), g * horiz_dist)
-		var horiz_dir = horiz.normalized()
-		launch_dir = horiz_dir * cos(angle) + Vector3(0, sin(angle), 0)
-
-	return launch_dir * launch_speed
+	if to_target.length() < 0.01:
+		return Vector3(0, -1, 0) * launch_speed
+	return to_target.normalized() * launch_speed
 
 func _process(_delta):
 	_draw_aim_line()
@@ -92,6 +68,7 @@ func _draw_aim_line():
 
 	var pos = udder_spawn.global_position
 	var velocity = _get_launch_velocity()
+	print("udder:", pos, " cursor:", _get_cursor_world_pos(), " vel:", velocity)
 	var gravity_vec = Vector3(0, GRAVITY * GRAVITY_SCALE, 0)
 
 	var space = get_world_3d().direct_space_state
@@ -102,8 +79,8 @@ func _draw_aim_line():
 	var sim_dt = 0.04
 	var steps = 50
 	var dot_accum = 0.0
-	var dot_spacing = 0.4
-	var dot_len = 0.15
+	var dot_spacing = 0.6
+	var dot_len = 0.4
 	var hit_pos: Vector3 = Vector3.ZERO
 	var hit_found = false
 
@@ -128,8 +105,10 @@ func _draw_aim_line():
 			var frac = 1.0 - (dot_accum / seg_len)
 			var dot_start = sim_pos.lerp(next_pos, frac)
 			var dot_end = sim_pos.lerp(next_pos, min(frac + dot_len / seg_len, 1.0))
-			aim_mesh.surface_add_vertex(dot_start)
-			aim_mesh.surface_add_vertex(dot_end)
+			var thickness = 0.18
+			for offset in [Vector3(0,0,0), Vector3(thickness,0,0), Vector3(-thickness,0,0), Vector3(0,thickness,0), Vector3(0,-thickness,0)]:
+				aim_mesh.surface_add_vertex(dot_start + offset)
+				aim_mesh.surface_add_vertex(dot_end + offset)
 
 		sim_pos = next_pos
 
