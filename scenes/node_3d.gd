@@ -54,10 +54,24 @@ func _shoot():
 	var ball = ball_scene.instantiate()
 	get_tree().root.add_child(ball)
 	ball.global_position = udder_spawn.global_position
-	ball.linear_velocity = current_shoot_dir * launch_speed
+	
+	# Add upward arc compensation based on distance to target
+	var mouse_pos = get_viewport().get_mouse_position()
+	var from = camera.project_ray_origin(mouse_pos)
+	var dir = camera.project_ray_normal(mouse_pos)
+	var udder_z = udder_spawn.global_position.z
+	var t = (udder_z - from.z) / dir.z
+	var cursor_world_pos = from + dir * t
+	var distance = udder_spawn.global_position.distance_to(cursor_world_pos)
+	
+	# Arc upward proportional to distance
+	var arc_strength = distance * 0.15
+	var launch_dir = current_shoot_dir + Vector3(0, arc_strength, 0)
+	launch_dir = launch_dir.normalized()
+	
+	ball.linear_velocity = launch_dir * launch_speed
 	ball.gravity_scale = 1.75
 	ball.tree_exited.connect(_on_ball_exited)
-
 func _draw_aim_line():
 	aim_mesh.clear_surfaces()
 	
