@@ -57,9 +57,9 @@ max_contacts_reported = 4
 script = ExtResource("1_vdapn")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=706499041]
-transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 shape = SubResource("SphereShape3D_cet3u")
 
 [node name="Ball" type="MeshInstance3D" parent="." unique_id=1558663511]
-transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 mesh = SubResource("ArrayMesh_g1v38")

@@ -1,14 +1,14 @@
 extends Node3D
 
 @export var ball_scene: PackedScene
-@export var launch_speed: float = 35.0
-
+@export var launch_speed: float = 30.0
 @onready var udder_spawn: Marker3D = $Cow/UdderSpawnPoint
 @onready var camera: Camera3D = $Camera3D
 
 var can_shoot: bool = true
 var aim_mesh: ImmediateMesh
 var aim_mesh_instance: MeshInstance3D
+var current_shoot_dir: Vector3 = Vector3.DOWN
 
 const GRAVITY_SCALE: float = 1.75
 const GRAVITY: float = -9.8
@@ -39,11 +39,25 @@ func _get_launch_velocity() -> Vector3:
 	var origin = udder_spawn.global_position
 	var target = _get_cursor_world_pos()
 	var to_target = target - origin
+	
 	if to_target.length() < 0.01:
 		return Vector3(0, -1, 0) * launch_speed
-	return to_target.normalized() * launch_speed
+	
+	var dir = to_target.normalized()
+	
+	# If aiming too far up, clamp Y to the max allowed
+	var max_up_degrees = -10.0  # degrees above horizontal
+	var max_y = sin(deg_to_rad(max_up_degrees))
+	if dir.y > max_y:
+		dir.y = max_y
+		dir = dir.normalized()
+	
+	return dir * launch_speed
 
 func _process(_delta):
+	var velocity = _get_launch_velocity()
+	if velocity.length() > 0.01:
+		current_shoot_dir = velocity.normalized()
 	_draw_aim_line()
 
 func _shoot():

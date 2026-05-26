@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://dsfgcf554itnu" path="res://scenes/node_3d.gd" id="1_5t4e2"]
 [ext_resource type="PackedScene" uid="uid://boqrni1yve7dy" path="res://Assets/Cow.fbx" id="1_ns6u7"]
 [ext_resource type="PackedScene" uid="uid://dyuicrvwn26yu" path="res://WhiteBall.tscn" id="2_5t4e2"]
+[ext_resource type="PackedScene" uid="uid://d2gxjipg82mu1" path="res://Assets/udder.glb" id="4_1enmr"]
+[ext_resource type="Script" uid="uid://ck5lws50p4dx1" path="res://Assets/udder.gd" id="5_aj7ea"]
 [ext_resource type="Script" uid="uid://crmog3p0rdnfy" path="res://PegSpawner.gd" id="5_oqwcg"]
 [ext_resource type="PackedScene" uid="uid://cg6182onefv5p" path="res://BluePeg.tscn" id="6_a6664"]
 [ext_resource type="PackedScene" uid="uid://bkv6tjg1ufssx" path="res://HUD.tscn" id="7_10v3s"]
@@ -53,3 +55,7 @@ mesh = SubResource("QuadMesh_q712h")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1053124792]
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 13, 12)
+
+[node name="udder" parent="." unique_id=1978757297 instance=ExtResource("4_1enmr")]
+transform = Transform3D(-8.742278e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.742278e-09, 0.8248158, 7.849654, -3.5527137e-15)
+script = ExtResource("5_aj7ea")

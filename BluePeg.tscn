@@ -4,14 +4,14 @@
 [ext_resource type="PackedScene" uid="uid://duudiev2wq5tu" path="res://Assets/TEAL BALL (peg).glb" id="2_tbq5h"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_8xdbv"]
-radius = 0.41934162
+radius = 0.31563377
 
 [node name="BluePeg" type="StaticBody3D" unique_id=2026480295]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 script = ExtResource("1_8xdbv")
 
 [node name="TEAL BALL (peg)" parent="." unique_id=1300227685 instance=ExtResource("2_tbq5h")]
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1073096763]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
