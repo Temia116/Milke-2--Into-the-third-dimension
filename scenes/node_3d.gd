@@ -21,7 +21,7 @@ func _ready():
 	var mat = StandardMaterial3D.new()
 	mat.albedo_color = Color(0.0, 0.5, 1.0)
 	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	mat.vertex_color_use_as_albedo = true
+	mat.cull_mode = BaseMaterial3D.CULL_DISABLED
 	aim_mesh_instance.material_override = mat
 	add_child(aim_mesh_instance)
 
@@ -86,15 +86,17 @@ func _draw_aim_line():
 	var gravity_vec = Vector3(0, GRAVITY * GRAVITY_SCALE, 0)
 
 	var space = get_world_3d().direct_space_state
-	aim_mesh.surface_begin(Mesh.PRIMITIVE_LINES)
+	aim_mesh.surface_begin(Mesh.PRIMITIVE_TRIANGLES)
 
 	var sim_pos = pos
 	var sim_vel = velocity
 	var sim_dt = 0.04
 	var steps = 50
 	var dot_accum = 0.0
-	var dot_spacing = 0.6
-	var dot_len = 0.4
+	var dot_spacing = 1.2
+	var pill_half_len = 0.28
+	var pill_radius = 0.12
+	var pill_segs = 6
 	var hit_pos: Vector3 = Vector3.ZERO
 	var hit_found = false
 
@@ -117,12 +119,34 @@ func _draw_aim_line():
 		while dot_accum >= dot_spacing:
 			dot_accum -= dot_spacing
 			var frac = 1.0 - (dot_accum / seg_len)
-			var dot_start = sim_pos.lerp(next_pos, frac)
-			var dot_end = sim_pos.lerp(next_pos, min(frac + dot_len / seg_len, 1.0))
-			var thickness = 0.18
-			for offset in [Vector3(0,0,0), Vector3(thickness,0,0), Vector3(-thickness,0,0), Vector3(0,thickness,0), Vector3(0,-thickness,0)]:
-				aim_mesh.surface_add_vertex(dot_start + offset)
-				aim_mesh.surface_add_vertex(dot_end + offset)
+			var center = sim_pos.lerp(next_pos, frac)
+			var travel_dir = (next_pos - sim_pos).normalized()
+			var p0 = center - travel_dir * pill_half_len
+			var p1 = center + travel_dir * pill_half_len
+			var perp = Vector3(-travel_dir.y, travel_dir.x, 0).normalized() * pill_radius
+			# Rectangular body
+			aim_mesh.surface_add_vertex(p0 - perp)
+			aim_mesh.surface_add_vertex(p1 - perp)
+			aim_mesh.surface_add_vertex(p1 + perp)
+			aim_mesh.surface_add_vertex(p0 - perp)
+			aim_mesh.surface_add_vertex(p1 + perp)
+			aim_mesh.surface_add_vertex(p0 + perp)
+			# Rounded caps
+			for s in range(pill_segs):
+				var a0 = PI * 0.5 + PI * s / pill_segs
+				var a1 = PI * 0.5 + PI * (s + 1) / pill_segs
+				var t0 = Vector3(cos(a0), sin(a0), 0) * pill_radius
+				var t1 = Vector3(cos(a1), sin(a1), 0) * pill_radius
+				aim_mesh.surface_add_vertex(p0)
+				aim_mesh.surface_add_vertex(p0 + t0)
+				aim_mesh.surface_add_vertex(p0 + t1)
+				a0 = -PI * 0.5 + PI * s / pill_segs
+				a1 = -PI * 0.5 + PI * (s + 1) / pill_segs
+				t0 = Vector3(cos(a0), sin(a0), 0) * pill_radius
+				t1 = Vector3(cos(a1), sin(a1), 0) * pill_radius
+				aim_mesh.surface_add_vertex(p1)
+				aim_mesh.surface_add_vertex(p1 + t0)
+				aim_mesh.surface_add_vertex(p1 + t1)
 
 		sim_pos = next_pos
 
@@ -132,6 +156,7 @@ func _draw_aim_line():
 		for i in range(segments):
 			var angle_a = (float(i) / segments) * TAU
 			var angle_b = (float(i + 1) / segments) * TAU
+			aim_mesh.surface_add_vertex(hit_pos)
 			aim_mesh.surface_add_vertex(hit_pos + Vector3(cos(angle_a) * radius, sin(angle_a) * radius, 0))
 			aim_mesh.surface_add_vertex(hit_pos + Vector3(cos(angle_b) * radius, sin(angle_b) * radius, 0))
 
