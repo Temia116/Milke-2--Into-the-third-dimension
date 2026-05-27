@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bieqhn7vyuxbu" path="res://GameOver.tscn" id="8_cptob"]
 [ext_resource type="Texture2D" uid="uid://b20unte2bx2tx" path="res://Assets/suburban_soccer_park_4k.exr" id="9_q712h"]
 [ext_resource type="PackedScene" uid="uid://dbhev6405q52o" path="res://WinScreen.tscn" id="10_q712h"]
+[ext_resource type="PackedScene" uid="uid://bmdp3u4otsxe" path="res://Van.tscn" id="13_umdqk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1enmr"]
 shading_mode = 0
@@ -59,3 +60,9 @@ transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.70710
 [node name="udder" parent="." unique_id=1978757297 instance=ExtResource("4_1enmr")]
 transform = Transform3D(-8.742278e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.742278e-09, 0.8248158, 7.849654, -3.5527137e-15)
 script = ExtResource("5_aj7ea")
+
+[node name="StaticBody3D" parent="." unique_id=1202237873 instance=ExtResource("13_umdqk")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 14, -10, 0)
+speed = null
+left_limit = null
+right_limit = null

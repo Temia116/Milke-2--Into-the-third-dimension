@@ -16,7 +16,7 @@ var score: int = 0
 var multiplier: int = 1
 
 # --- Balls ---
-var balls_remaining: int = 15
+var balls_remaining: int = 10
 
 # --- Pegs ---
 var total_orange_pegs: int = 0
@@ -45,6 +45,14 @@ func on_peg_hit(peg_type: String):
 		"green":
 			add_score(25)
 			# green special ability hook - add later
+
+func on_ball_caught():
+	balls_remaining += 1
+	balls_changed.emit(balls_remaining)
+	score += 2000
+	score_changed.emit(score)
+	print("Free ball awarded! Balls remaining: ", balls_remaining)
+
 
 func on_ball_launched():
 	current_state = State.BALL_IN_PLAY

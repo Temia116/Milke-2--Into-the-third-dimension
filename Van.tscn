@@ -1,24 +1,26 @@
 [gd_scene format=3 uid="uid://bmdp3u4otsxe"]
 
+[ext_resource type="Script" uid="uid://b51y7k5war5he" path="res://van.gd" id="1_8x73d"]
 [ext_resource type="PackedScene" uid="uid://cb26eyw8l6u1" path="res://Assets/van_1.glb" id="1_jo2y7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8x73d"]
-size = Vector3(2.7667236, 2.6766663, 6.3337708)
+size = Vector3(2.7667236, 2.6766663, 6.2728424)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ovdim"]
 size = Vector3(1, 0.7058716, 1.0124397)
 
 [node name="StaticBody3D" type="StaticBody3D" unique_id=1202237873]
+script = ExtResource("1_8x73d")
 
 [node name="van_1" parent="." unique_id=698046228 instance=ExtResource("1_jo2y7")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=419834307]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.012268066, 1.3246071, -0.053085327)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.012268066, 1.3246071, -0.0835495)
 shape = SubResource("BoxShape3D_8x73d")
 
-[node name="Area3D" type="Area3D" parent="." unique_id=1405261556]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8774858, 0)
+[node name="CatchZone" type="Area3D" parent="." unique_id=1405261556]
+transform = Transform3D(0.99978, -0.020494273, 0.0044673057, 0.020645948, 0.9990995, -0.037067406, -0.0037036361, 0.03715148, 0.99930274, 0, 2.8774858, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1416786782]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CatchZone" unique_id=1416786782]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.14706421, -0.5155661)
 shape = SubResource("BoxShape3D_ovdim")
