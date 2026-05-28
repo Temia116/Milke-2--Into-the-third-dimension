@@ -49,7 +49,7 @@ orange_peg_scene = ExtResource("7_b2yaj")
 [node name="Gameover" parent="." unique_id=1886323533 instance=ExtResource("8_cptob")]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1937443459]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8644419, -16)
 mesh = SubResource("QuadMesh_q712h")
 
 [node name="WinScreen" parent="." unique_id=2056049492 instance=ExtResource("10_q712h")]
