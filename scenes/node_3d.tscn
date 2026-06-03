@@ -23,6 +23,25 @@ albedo_texture = ExtResource("9_q712h")
 material = SubResource("StandardMaterial3D_1enmr")
 size = Vector2(40, 25)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_umdqk"]
+shading_mode = 0
+albedo_color = Color(0.11372549, 0.3372549, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_6l3rs"]
+material = SubResource("StandardMaterial3D_umdqk")
+size = Vector2(1, 20.5)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_umdqk"]
+friction = 0.0
+bounce = 0.5
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_umdqk"]
+size = Vector3(1, 20.369446, 1)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6l3rs"]
+friction = 0.0
+bounce = 0.5
+
 [node name="Node3D" type="Node3D" unique_id=1256403829]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.061877728, 0)
 script = ExtResource("1_5t4e2")
@@ -66,3 +85,25 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 14, 
 speed = null
 left_limit = null
 right_limit = null
+
+[node name="LeftBorder" type="MeshInstance3D" parent="." unique_id=1496683824]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.735, 0, 0)
+mesh = SubResource("QuadMesh_6l3rs")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LeftBorder" unique_id=1739663155]
+physics_material_override = SubResource("PhysicsMaterial_umdqk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LeftBorder/StaticBody3D" unique_id=1283888890]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.023773193, 0)
+shape = SubResource("BoxShape3D_umdqk")
+
+[node name="RightBorder" type="MeshInstance3D" parent="." unique_id=556645193]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.724667, 0, 0)
+mesh = SubResource("QuadMesh_6l3rs")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="RightBorder" unique_id=1006212633]
+physics_material_override = SubResource("PhysicsMaterial_6l3rs")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RightBorder/StaticBody3D" unique_id=92779503]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.023773193, 0)
+shape = SubResource("BoxShape3D_umdqk")
