@@ -66,6 +66,7 @@ func _shoot():
 		return
 
 	can_shoot = false
+	GameManager.on_ball_lost()
 
 	var ball = ball_scene.instantiate()
 	get_tree().root.add_child(ball)

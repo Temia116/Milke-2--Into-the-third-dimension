@@ -5,20 +5,17 @@
 [node name="HUD" type="CanvasLayer" unique_id=289833468]
 script = ExtResource("1_k5de2")
 
-[node name="ScoreLabel" type="Label" parent="." unique_id=1661182190]
-offset_top = 21.0
-offset_right = 40.0
-offset_bottom = 44.0
+[node name="TopBar" type="PanelContainer" parent="." unique_id=858352716]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 60.0
+grow_horizontal = 2
+
+[node name="ScoreLabel" type="Label" parent="TopBar" unique_id=1661182190]
+layout_mode = 2
 horizontal_alignment = 2
 
-[node name="BallsContainer" type="Control" parent="." unique_id=872525949]
-layout_mode = 3
-anchors_preset = 0
+[node name="BallStack" type="VBoxContainer" parent="." unique_id=2067100329]
 offset_right = 40.0
 offset_bottom = 40.0
-
-[node name="BallsLabel" type="Label" parent="BallsContainer" unique_id=380633594]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Balls left: "
+alignment = 1

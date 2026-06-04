@@ -19,6 +19,5 @@ func _process(_delta):
 		for peg in hit_pegs:
 			if is_instance_valid(peg):
 				peg.on_ball_exited()
-		GameManager.on_ball_lost()
 		ball_exited.emit()
 		queue_free()
