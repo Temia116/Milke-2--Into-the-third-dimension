@@ -16,6 +16,8 @@ layout_mode = 2
 horizontal_alignment = 2
 
 [node name="BallStack" type="VBoxContainer" parent="." unique_id=2067100329]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 17.0
+offset_top = 66.0
+offset_right = 57.0
+offset_bottom = 106.0
 alignment = 1
