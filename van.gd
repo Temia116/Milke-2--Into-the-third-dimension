@@ -24,6 +24,6 @@ func _on_catch_zone_body_entered(body):
 			if is_instance_valid(peg):
 				peg.on_ball_exited()
 		GameManager.on_ball_caught()
-		await get_tree().create_timer(0.5).timeout
+		#await get_tree().create_timer(0.5).timeout
 		if is_instance_valid(body):
 			body.queue_free()
