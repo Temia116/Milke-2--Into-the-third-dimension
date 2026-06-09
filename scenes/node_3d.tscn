@@ -82,9 +82,6 @@ script = ExtResource("5_aj7ea")
 
 [node name="StaticBody3D" parent="." unique_id=1202237873 instance=ExtResource("13_umdqk")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 14, -10, 0)
-speed = null
-left_limit = null
-right_limit = null
 
 [node name="LeftBorder" type="MeshInstance3D" parent="." unique_id=1496683824]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, -17.735, 0, 0)
