@@ -12,7 +12,7 @@ config_version=5
 
 config/name="fart balls game chud evil"
 run/main_scene="uid://cio1r2gxqj6hy"
-config/features=PackedStringArray("4.6", "Forward Plus")
+config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]

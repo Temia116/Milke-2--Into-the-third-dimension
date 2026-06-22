@@ -22,10 +22,12 @@ var balls_remaining: int = 10
 var total_orange_pegs: int = 0
 var orange_pegs_hit: int = 0
 
+# --- Level ---
+const MAX_LEVEL: int = 3
+var current_level: int = 1
+
 func _ready():
-	await get_tree().create_timer(0.1).timeout
-	total_orange_pegs = get_tree().get_nodes_in_group("orange_pegs").size()
-	print("Total orange pegs: ", total_orange_pegs)
+	# total_orange_pegs is set by PegSpawner after it finishes spawning
 	balls_changed.emit(balls_remaining)
 
 func add_score(base_points: int):
@@ -53,7 +55,6 @@ func on_ball_caught():
 	score_changed.emit(score)
 	print("Free ball awarded! Balls remaining: ", balls_remaining)
 
-
 func on_ball_launched():
 	current_state = State.BALL_IN_PLAY
 
@@ -61,8 +62,14 @@ func on_ball_lost():
 	balls_remaining -= 1
 	balls_changed.emit(balls_remaining)
 
+func reset_for_level():
+	score = 0
+	balls_remaining = 10
+	orange_pegs_hit = 0
+	total_orange_pegs = 0
+	current_state = State.IDLE
 
 func _process(_delta):
-	if balls_remaining <= 0 and current_state != State.GAME_OVER:
+	if balls_remaining <= 0 and current_state != State.GAME_OVER and current_state != State.LEVEL_COMPLETE:
 		current_state = State.GAME_OVER
 		game_over.emit()

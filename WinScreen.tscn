@@ -30,10 +30,18 @@ text = "SCORE:"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="." unique_id=1501760177]
+[node name="RetryButton" type="Button" parent="." unique_id=1501760177]
 offset_left = 836.0
 offset_top = 516.0
 offset_right = 1135.0
 offset_bottom = 593.0
 theme_override_font_sizes/font_size = 50
 text = "PLAY AGAIN"
+
+[node name="NextButton" type="Button" parent="." unique_id=326871586]
+offset_left = 802.0
+offset_top = 599.0
+offset_right = 1090.0
+offset_bottom = 676.0
+theme_override_font_sizes/font_size = 50
+text = "NEXT LEVEL"
