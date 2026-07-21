@@ -1,14 +1,10 @@
 [gd_scene format=3 uid="uid://dbhev6405q52o"]
 
 [ext_resource type="Script" uid="uid://b86rxgobxgyw8" path="res://WinScreen.gd" id="1_a03an"]
+[ext_resource type="VideoStream" uid="uid://703gx6e7kac5" path="res://Assets/das und diddybludden.ogv" id="2_0eiwq"]
 
 [node name="WinScreen" type="CanvasLayer" unique_id=2056049492]
 script = ExtResource("1_a03an")
-
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1336406552]
-offset_right = 1923.0
-offset_bottom = 1082.0
-color = Color(1, 0.84313726, 0, 1)
 
 [node name="Label" type="Label" parent="." unique_id=864837389]
 offset_left = 838.0
@@ -45,3 +41,10 @@ offset_right = 1090.0
 offset_bottom = 676.0
 theme_override_font_sizes/font_size = 50
 text = "NEXT LEVEL"
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="." unique_id=557577614]
+offset_right = 1925.0
+offset_bottom = 1079.0
+stream = ExtResource("2_0eiwq")
+expand = true
+loop = true

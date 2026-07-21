@@ -53,7 +53,7 @@ projection = 1
 size = 20.523
 
 [node name="Cow" parent="." unique_id=1644535265 instance=ExtResource("1_ns6u7")]
-transform = Transform3D(-2.6226834e-08, 0, -0.6, 0, 0.6, 0, 0.6, 0, -2.6226834e-08, 0, 7, 0)
+transform = Transform3D(-2.6226834e-08, 0, -0.6, 0, 0.6, 0, 0.6, 0, -2.6226834e-08, 0, 5.8842783, 0)
 
 [node name="UdderSpawnPoint" type="Marker3D" parent="Cow" unique_id=1824261757]
 transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, -6.144277e-08, 1.8418448, -1.4056467)
@@ -77,7 +77,7 @@ mesh = SubResource("QuadMesh_q712h")
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 13, 12)
 
 [node name="udder" parent="." unique_id=1978757297 instance=ExtResource("4_1enmr")]
-transform = Transform3D(-8.742278e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.742278e-09, 0.8248158, 7.849654, -3.5527137e-15)
+transform = Transform3D(-8.742278e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.742278e-09, 0.8248158, 6.7339325, -3.5527137e-15)
 script = ExtResource("5_aj7ea")
 
 [node name="StaticBody3D" parent="." unique_id=1202237873 instance=ExtResource("13_umdqk")]

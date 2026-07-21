@@ -4,6 +4,7 @@ extends CanvasLayer
 @onready var score_label = $ScoreLabel
 @onready var retry_button = $RetryButton
 @onready var next_button = $NextButton
+@onready var video = $VideoStreamPlayer
 
 func _ready():
 	visible = false
@@ -16,6 +17,7 @@ func _on_level_complete():
 	score_label.text = "SCORE: " + str(GameManager.score)
 	# Hide Next Level button if we're on the last level
 	next_button.visible = GameManager.current_level < GameManager.MAX_LEVEL
+	video.play()
 
 func _on_retry_pressed():
 	GameManager.reset_for_level()
