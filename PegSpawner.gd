@@ -35,19 +35,27 @@ var level_1 = [
 # Two curved arcs — a frown on top, a smile below.
 # ---------------------------------------------------------------------------
 var level_2 = [
-	[-10.0,  2.5,  "blue"], [-9.51,  1.26, "blue"], [-8.09,  0.15, "blue"],
-	[-5.88, -0.74, "blue"], [-3.09, -1.3,  "blue"], [ 0.0,  -1.5,  "blue"],
-	[ 3.09, -1.3,  "blue"], [ 5.88, -0.74, "blue"], [ 8.09,  0.15, "blue"],
-	[ 9.51,  1.26, "blue"], [10.0,   2.5,  "blue"],
-	[ 9.9,  -1.5,  "blue"], [ 9.42, -0.53, "blue"], [ 8.01,  0.35, "blue"],
-	[ 5.82,  1.05, "blue"], [ 3.06,  1.5,  "blue"], [ 0.0,   1.65, "blue"],
-	[-3.06,  1.5,  "blue"], [-5.82,  1.05, "blue"], [-8.01,  0.35, "blue"],
-	[-9.42, -0.53, "blue"], [-9.9,  -1.5,  "blue"],
-	[-11,  1.0,  "blue"], [-11, -0.5,  "blue"], [-11, -2.0,  "blue"], [-10, -3.5,  "blue"],
-	[ 11,  1.0,  "blue"], [ 11, -0.5,  "blue"], [ 11, -2.0,  "blue"], [ 10, -3.5,  "blue"],
-	[-5, -3.5, "blue"], [0, -4.0, "blue"], [5, -3.5, "blue"],
-	[-3,  0.2, "blue"], [3,  0.2, "blue"], [0, -0.8, "blue"],
-	[-6, -2.5, "blue"], [6, -2.5, "blue"],
+	# Circle of pegs at top - centred at (0, 4.5), radius 3.5
+	[0.0, 8.0, "blue"], [2.17, 7.25, "blue"], [3.5, 5.5, "blue"],
+	[3.5, 3.5, "blue"], [2.17, 3.75, "blue"], [0.0, 3.0, "blue"],
+	[-2.17, 3.75, "blue"], [-3.5, 3.5, "blue"], [-3.5, 5.5, "blue"],
+	[-2.17, 7.25, "blue"],
+	# Top arc (frown) - upper field
+	[-10.0, 2.5, "blue"], [-9.51, 1.88, "blue"], [-8.09, 1.32, "blue"],
+	[-5.88, 0.88, "blue"], [-3.09, 0.6, "blue"], [0.0, 0.5, "blue"],
+	[3.09, 0.6, "blue"], [5.88, 0.88, "blue"], [8.09, 1.32, "blue"],
+	[9.51, 1.88, "blue"], [10.0, 2.5, "blue"],
+	# Bottom arc (smile) - lower field
+	[10.0, -2.5, "blue"], [9.51, -1.88, "blue"], [8.09, -1.32, "blue"],
+	[5.88, -0.88, "blue"], [3.09, -0.6, "blue"], [0.0, -0.5, "blue"],
+	[-3.09, -0.6, "blue"], [-5.88, -0.88, "blue"], [-8.09, -1.32, "blue"],
+	[-9.51, -1.88, "blue"], [-10.0, -2.5, "blue"],
+	# Side columns
+	[-11, 1.0, "blue"], [-11, -0.5, "blue"], [-11, -2.0, "blue"],
+	[11, 1.0, "blue"], [11, -0.5, "blue"], [11, -2.0, "blue"],
+	# Bottom scatter
+	[-6, -3.5, "blue"], [-3, -4.0, "blue"], [0, -4.2, "blue"],
+	[3, -4.0, "blue"], [6, -3.5, "blue"],
 ]
 
 # ---------------------------------------------------------------------------
@@ -74,6 +82,9 @@ func _ready():
 	spawn_level(GameManager.current_level)
 
 func spawn_level(level_num: int):
+	for child in get_children():
+		child.queue_free()
+	await get_tree().process_frame
 	var layout: Array
 	match level_num:
 		1: layout = level_1

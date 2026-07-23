@@ -27,30 +27,27 @@ func _ready():
 
 func _get_cursor_world_pos() -> Vector3:
 	var mouse_pos = get_viewport().get_mouse_position()
-	var from = camera.project_ray_origin(mouse_pos)
-	var dir = camera.project_ray_normal(mouse_pos)
-	var udder_z = udder_spawn.global_position.z
-	if abs(dir.z) > 0.001:
-		var t = (udder_z - from.z) / dir.z
-		return from + dir * t
-	return udder_spawn.global_position + dir * 10.0
+	var world_pos = camera.project_position(mouse_pos, camera.global_position.z - udder_spawn.global_position.z)
+	return Vector3(world_pos.x, world_pos.y, udder_spawn.global_position.z)
 
 func _get_launch_velocity() -> Vector3:
 	var origin = udder_spawn.global_position
 	var target = _get_cursor_world_pos()
+	
+	# Force target below the udder
+	if target.y >= origin.y - 0.5:
+		target.y = origin.y - 0.5
+	
 	var to_target = target - origin
 	
-	if to_target.length() < 0.01:
-		return Vector3(0, -1, 0) * launch_speed
-	
+	# Clamp direction to a max angle from straight down
+	var max_angle_deg = 75.0
+	var down = Vector3(0, -1, 0)
 	var dir = to_target.normalized()
-	
-	# If aiming too far up, clamp Y to the max allowed
-	var max_up_degrees = -10.0  # degrees above horizontal
-	var max_y = sin(deg_to_rad(max_up_degrees))
-	if dir.y > max_y:
-		dir.y = max_y
-		dir = dir.normalized()
+	var angle = rad_to_deg(acos(dir.dot(down)))
+	if angle > max_angle_deg:
+		# Lerp back toward straight down
+		dir = down.lerp(dir.normalized(), max_angle_deg / angle).normalized()
 	
 	return dir * launch_speed
 
@@ -77,31 +74,26 @@ func _shoot():
 
 func _draw_aim_line():
 	aim_mesh.clear_surfaces()
-
 	if not can_shoot:
 		return
 
 	var pos = udder_spawn.global_position
 	var velocity = _get_launch_velocity()
-	print("udder:", pos, " cursor:", _get_cursor_world_pos(), " vel:", velocity)
 	var gravity_vec = Vector3(0, GRAVITY * GRAVITY_SCALE, 0)
-
 	var space = get_world_3d().direct_space_state
 	aim_mesh.surface_begin(Mesh.PRIMITIVE_TRIANGLES)
 
 	var sim_pos = pos
 	var sim_vel = velocity
-	var sim_dt = 0.04
-	var steps = 50
+	var sim_dt = 0.04  # smaller step = evenly spaced dots
+	var steps = 80
 	var dot_accum = 0.0
-	var dot_spacing = 1.2
-	var pill_half_len = 0.28
+	var dot_spacing = 1.0  # fixed world-space spacing
+	var pill_half_len = 0.35
 	var pill_radius = 0.12
 	var pill_segs = 6
-	var hit_pos: Vector3 = Vector3.ZERO
-	var hit_found = false
 
-	for i in range(steps):
+	for _i in range(steps):
 		var next_pos = sim_pos + sim_vel * sim_dt + 0.5 * gravity_vec * sim_dt * sim_dt
 		sim_vel += gravity_vec * sim_dt
 
@@ -111,8 +103,6 @@ func _draw_aim_line():
 		query.collision_mask = 1
 		var result = space.intersect_ray(query)
 		if result.size() > 0:
-			hit_pos = result.position
-			hit_found = true
 			break
 
 		var seg_len = sim_pos.distance_to(next_pos)
@@ -125,14 +115,12 @@ func _draw_aim_line():
 			var p0 = center - travel_dir * pill_half_len
 			var p1 = center + travel_dir * pill_half_len
 			var perp = Vector3(-travel_dir.y, travel_dir.x, 0).normalized() * pill_radius
-			# Rectangular body
 			aim_mesh.surface_add_vertex(p0 - perp)
 			aim_mesh.surface_add_vertex(p1 - perp)
 			aim_mesh.surface_add_vertex(p1 + perp)
 			aim_mesh.surface_add_vertex(p0 - perp)
 			aim_mesh.surface_add_vertex(p1 + perp)
 			aim_mesh.surface_add_vertex(p0 + perp)
-			# Rounded caps
 			for s in range(pill_segs):
 				var a0 = PI * 0.5 + PI * s / pill_segs
 				var a1 = PI * 0.5 + PI * (s + 1) / pill_segs
@@ -150,16 +138,6 @@ func _draw_aim_line():
 				aim_mesh.surface_add_vertex(p1 + t1)
 
 		sim_pos = next_pos
-
-	if hit_found:
-		var radius = 0.3
-		var segments = 16
-		for i in range(segments):
-			var angle_a = (float(i) / segments) * TAU
-			var angle_b = (float(i + 1) / segments) * TAU
-			aim_mesh.surface_add_vertex(hit_pos)
-			aim_mesh.surface_add_vertex(hit_pos + Vector3(cos(angle_a) * radius, sin(angle_a) * radius, 0))
-			aim_mesh.surface_add_vertex(hit_pos + Vector3(cos(angle_b) * radius, sin(angle_b) * radius, 0))
 
 	aim_mesh.surface_end()
 
