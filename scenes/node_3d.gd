@@ -17,7 +17,6 @@ func _ready():
 	aim_mesh = ImmediateMesh.new()
 	aim_mesh_instance = MeshInstance3D.new()
 	aim_mesh_instance.mesh = aim_mesh
-
 	var mat = StandardMaterial3D.new()
 	mat.albedo_color = Color(0.0, 0.5, 1.0)
 	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
@@ -33,22 +32,23 @@ func _get_cursor_world_pos() -> Vector3:
 func _get_launch_velocity() -> Vector3:
 	var origin = udder_spawn.global_position
 	var target = _get_cursor_world_pos()
-	
-	# Force target below the udder
+
 	if target.y >= origin.y - 0.5:
 		target.y = origin.y - 0.5
-	
+
 	var to_target = target - origin
-	
-	# Clamp direction to a max angle from straight down
-	var max_angle_deg = 75.0
+	var max_angle_deg = 85.0
 	var down = Vector3(0, -1, 0)
 	var dir = to_target.normalized()
-	var angle = rad_to_deg(acos(dir.dot(down)))
+	var angle = rad_to_deg(acos(clamp(dir.dot(down), -1.0, 1.0)))
+
 	if angle > max_angle_deg:
-		# Lerp back toward straight down
-		dir = down.lerp(dir.normalized(), max_angle_deg / angle).normalized()
-	
+		var axis = down.cross(dir)
+		if axis.length() < 0.001:
+			axis = Vector3(0, 0, 1)
+		axis = axis.normalized()
+		dir = down.rotated(axis, deg_to_rad(max_angle_deg))
+
 	return dir * launch_speed
 
 func _process(_delta):
@@ -61,10 +61,8 @@ func _shoot():
 	if ball_scene == null:
 		push_error("No ball_scene assigned!")
 		return
-
 	can_shoot = false
 	GameManager.on_ball_lost()
-
 	var ball = ball_scene.instantiate()
 	get_tree().root.add_child(ball)
 	ball.global_position = udder_spawn.global_position
@@ -77,67 +75,70 @@ func _draw_aim_line():
 	if not can_shoot:
 		return
 
-	var pos = udder_spawn.global_position
-	var velocity = _get_launch_velocity()
+	var sim_pos = udder_spawn.global_position
+	var sim_vel = _get_launch_velocity()
 	var gravity_vec = Vector3(0, GRAVITY * GRAVITY_SCALE, 0)
 	var space = get_world_3d().direct_space_state
-	aim_mesh.surface_begin(Mesh.PRIMITIVE_TRIANGLES)
 
-	var sim_pos = pos
-	var sim_vel = velocity
-	var sim_dt = 0.04  # smaller step = evenly spaced dots
+	var sim_dt = 0.04
 	var steps = 80
 	var dot_accum = 0.0
-	var dot_spacing = 1.0  # fixed world-space spacing
-	var pill_half_len = 0.35
-	var pill_radius = 0.12
-	var pill_segs = 6
+	var dot_spacing = 1.0
+	var pill_half_len = 0.3
+	var pill_radius = 0.08
+	var min_draw_distance = 3.5
+	var start_pos = udder_spawn.global_position
+
+	aim_mesh.surface_begin(Mesh.PRIMITIVE_TRIANGLES)
 
 	for _i in range(steps):
 		var next_pos = sim_pos + sim_vel * sim_dt + 0.5 * gravity_vec * sim_dt * sim_dt
 		sim_vel += gravity_vec * sim_dt
 
-		var query = PhysicsRayQueryParameters3D.create(sim_pos, next_pos)
-		query.collide_with_areas = true
-		query.collide_with_bodies = true
-		query.collision_mask = 1
-		var result = space.intersect_ray(query)
-		if result.size() > 0:
-			break
+		var dist_from_origin = sim_pos.distance_to(start_pos)
 
-		var seg_len = sim_pos.distance_to(next_pos)
-		dot_accum += seg_len
-		while dot_accum >= dot_spacing:
-			dot_accum -= dot_spacing
-			var frac = 1.0 - (dot_accum / seg_len)
-			var center = sim_pos.lerp(next_pos, frac)
-			var travel_dir = (next_pos - sim_pos).normalized()
-			var p0 = center - travel_dir * pill_half_len
-			var p1 = center + travel_dir * pill_half_len
-			var perp = Vector3(-travel_dir.y, travel_dir.x, 0).normalized() * pill_radius
-			aim_mesh.surface_add_vertex(p0 - perp)
-			aim_mesh.surface_add_vertex(p1 - perp)
-			aim_mesh.surface_add_vertex(p1 + perp)
-			aim_mesh.surface_add_vertex(p0 - perp)
-			aim_mesh.surface_add_vertex(p1 + perp)
-			aim_mesh.surface_add_vertex(p0 + perp)
-			for s in range(pill_segs):
-				var a0 = PI * 0.5 + PI * s / pill_segs
-				var a1 = PI * 0.5 + PI * (s + 1) / pill_segs
-				var t0 = Vector3(cos(a0), sin(a0), 0) * pill_radius
-				var t1 = Vector3(cos(a1), sin(a1), 0) * pill_radius
-				aim_mesh.surface_add_vertex(p0)
-				aim_mesh.surface_add_vertex(p0 + t0)
-				aim_mesh.surface_add_vertex(p0 + t1)
-				a0 = -PI * 0.5 + PI * s / pill_segs
-				a1 = -PI * 0.5 + PI * (s + 1) / pill_segs
-				t0 = Vector3(cos(a0), sin(a0), 0) * pill_radius
-				t1 = Vector3(cos(a1), sin(a1), 0) * pill_radius
-				aim_mesh.surface_add_vertex(p1)
-				aim_mesh.surface_add_vertex(p1 + t0)
-				aim_mesh.surface_add_vertex(p1 + t1)
+		# Only check for collisions once we're clear of the cow/udder
+		if dist_from_origin > min_draw_distance:
+			var sphere_params = PhysicsShapeQueryParameters3D.new()
+			var sphere_shape = SphereShape3D.new()
+			sphere_shape.radius = 0.4
+			sphere_params.shape = sphere_shape
+			sphere_params.transform = Transform3D(Basis(), sim_pos)
+			sphere_params.motion = next_pos - sim_pos
+			sphere_params.collide_with_bodies = true
+			sphere_params.collision_mask = 1
+			var result = space.cast_motion(sphere_params)
+			if result[0] < 1.0:
+				sim_pos = sim_pos.lerp(next_pos, result[0])
+				break
+
+			var seg_len = sim_pos.distance_to(next_pos)
+			dot_accum += seg_len
+			while dot_accum >= dot_spacing:
+				dot_accum -= dot_spacing
+				var frac = 1.0 - (dot_accum / seg_len)
+				var center = sim_pos.lerp(next_pos, frac)
+				var travel_dir = (next_pos - sim_pos).normalized()
+				var p0 = center - travel_dir * pill_half_len
+				var p1 = center + travel_dir * pill_half_len
+				var perp = Vector3(-travel_dir.y, travel_dir.x, 0).normalized() * pill_radius
+				aim_mesh.surface_add_vertex(p0 - perp)
+				aim_mesh.surface_add_vertex(p1 - perp)
+				aim_mesh.surface_add_vertex(p1 + perp)
+				aim_mesh.surface_add_vertex(p0 - perp)
+				aim_mesh.surface_add_vertex(p1 + perp)
+				aim_mesh.surface_add_vertex(p0 + perp)
 
 		sim_pos = next_pos
+
+	var radius = 0.35
+	var segments = 16
+	for i in range(segments):
+		var angle_a = (float(i) / segments) * TAU
+		var angle_b = (float(i + 1) / segments) * TAU
+		aim_mesh.surface_add_vertex(sim_pos)
+		aim_mesh.surface_add_vertex(sim_pos + Vector3(cos(angle_a) * radius, sin(angle_a) * radius, 0))
+		aim_mesh.surface_add_vertex(sim_pos + Vector3(cos(angle_b) * radius, sin(angle_b) * radius, 0))
 
 	aim_mesh.surface_end()
 
