@@ -86,7 +86,7 @@ func _draw_aim_line():
 	var dot_spacing = 1.0
 	var pill_half_len = 0.3
 	var pill_radius = 0.08
-	var min_draw_distance = 3.5
+	var min_draw_distance = 0.1
 	var start_pos = udder_spawn.global_position
 
 	aim_mesh.surface_begin(Mesh.PRIMITIVE_TRIANGLES)
@@ -101,7 +101,7 @@ func _draw_aim_line():
 		if dist_from_origin > min_draw_distance:
 			var sphere_params = PhysicsShapeQueryParameters3D.new()
 			var sphere_shape = SphereShape3D.new()
-			sphere_shape.radius = 0.4
+			sphere_shape.radius = 0.25
 			sphere_params.shape = sphere_shape
 			sphere_params.transform = Transform3D(Basis(), sim_pos)
 			sphere_params.motion = next_pos - sim_pos
