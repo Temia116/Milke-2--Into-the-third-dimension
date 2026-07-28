@@ -74,30 +74,23 @@ func _draw_aim_line():
 	aim_mesh.clear_surfaces()
 	if not can_shoot:
 		return
-
 	var sim_pos = udder_spawn.global_position
 	var sim_vel = _get_launch_velocity()
 	var gravity_vec = Vector3(0, GRAVITY * GRAVITY_SCALE, 0)
 	var space = get_world_3d().direct_space_state
-
-	var sim_dt = 0.04
-	var steps = 80
+	var sim_dt = 0.02   # smaller step so the line starts closer to the udder
+	var steps = 160     # doubled to cover the same total distance
 	var dot_accum = 0.0
 	var dot_spacing = 1.0
 	var pill_half_len = 0.3
 	var pill_radius = 0.08
-	var min_draw_distance = 0.1
+	var min_draw_distance = 0.4
 	var start_pos = udder_spawn.global_position
-
 	aim_mesh.surface_begin(Mesh.PRIMITIVE_TRIANGLES)
-
 	for _i in range(steps):
 		var next_pos = sim_pos + sim_vel * sim_dt + 0.5 * gravity_vec * sim_dt * sim_dt
 		sim_vel += gravity_vec * sim_dt
-
 		var dist_from_origin = sim_pos.distance_to(start_pos)
-
-		# Only check for collisions once we're clear of the cow/udder
 		if dist_from_origin > min_draw_distance:
 			var sphere_params = PhysicsShapeQueryParameters3D.new()
 			var sphere_shape = SphereShape3D.new()
@@ -111,7 +104,6 @@ func _draw_aim_line():
 			if result[0] < 1.0:
 				sim_pos = sim_pos.lerp(next_pos, result[0])
 				break
-
 			var seg_len = sim_pos.distance_to(next_pos)
 			dot_accum += seg_len
 			while dot_accum >= dot_spacing:
@@ -128,9 +120,7 @@ func _draw_aim_line():
 				aim_mesh.surface_add_vertex(p0 - perp)
 				aim_mesh.surface_add_vertex(p1 + perp)
 				aim_mesh.surface_add_vertex(p0 + perp)
-
 		sim_pos = next_pos
-
 	var radius = 0.35
 	var segments = 16
 	for i in range(segments):
@@ -139,7 +129,6 @@ func _draw_aim_line():
 		aim_mesh.surface_add_vertex(sim_pos)
 		aim_mesh.surface_add_vertex(sim_pos + Vector3(cos(angle_a) * radius, sin(angle_a) * radius, 0))
 		aim_mesh.surface_add_vertex(sim_pos + Vector3(cos(angle_b) * radius, sin(angle_b) * radius, 0))
-
 	aim_mesh.surface_end()
 
 func _input(event):
