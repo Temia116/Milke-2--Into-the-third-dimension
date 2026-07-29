@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://sna5iijugoof"]
+
+[ext_resource type="PackedScene" uid="uid://tnrlvijv6egj" path="res://Assets/GREEN BALL (special ability).glb" id="1_nd2hd"]
+[ext_resource type="Script" uid="uid://cvwh2xsxm6war" path="res://green_peg.gd" id="1_sekef"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_nd2hd"]
+radius = 0.42546406
+
+[node name="GreenPeg" type="StaticBody3D" unique_id=1812975418]
+script = ExtResource("1_sekef")
+
+[node name="GREEN BALL (special ability)" parent="." unique_id=602506117 instance=ExtResource("1_nd2hd")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1065520258]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+shape = SubResource("SphereShape3D_nd2hd")

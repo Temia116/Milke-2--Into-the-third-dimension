@@ -9,6 +9,7 @@ var can_shoot: bool = true
 var aim_mesh: ImmediateMesh
 var aim_mesh_instance: MeshInstance3D
 var current_shoot_dir: Vector3 = Vector3.DOWN
+var bessie_next_shot: bool = false
 
 const GRAVITY_SCALE: float = 1.75
 const GRAVITY: float = -9.8
@@ -69,6 +70,15 @@ func _shoot():
 	ball.linear_velocity = _get_launch_velocity()
 	ball.gravity_scale = GRAVITY_SCALE
 	ball.tree_exited.connect(_on_ball_exited)
+
+	if bessie_next_shot:
+		ball.scale = Vector3(3, 3, 3)
+		var phys_mat = PhysicsMaterial.new()
+		phys_mat.bounce = 0.05
+		phys_mat.friction = 0.1
+		ball.physics_material_override = phys_mat
+		ball.mass = 6.0
+		bessie_next_shot = false
 
 func _draw_aim_line():
 	aim_mesh.clear_surfaces()
@@ -135,6 +145,20 @@ func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed and can_shoot:
 			_shoot()
+	if event is InputEventKey:
+		if event.keycode == KEY_E and event.pressed and can_shoot:
+			_activate_cow_ability()
+
+func _activate_cow_ability():
+	if GameManager.activate_cow_ability():
+		match GameManager.selected_cow:
+			"bessie":
+				bessie_next_shot = true
+				print("Bessie activated! Next shot is UDDERLY MASSIVE.")
+			"moolinda":
+				GameManager.ability_score_multiplier = 2
+				print("Moolinda activated! Next shot scores DOUBLE CREAM.")
 
 func _on_ball_exited():
 	can_shoot = true
+	GameManager.reset_shot_multipliers()

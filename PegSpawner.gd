@@ -35,22 +35,19 @@ var level_1 = [
 # Two curved arcs — a frown on top, a smile below.
 # ---------------------------------------------------------------------------
 var level_2 = [
-	# Top arc (frown) - endpoints removed near cow
-	[-9.51, 1.88, "blue"], [-8.09, 1.32, "blue"],
-	[-5.88, 0.88, "blue"], [-3.09, 0.6, "blue"], [0.0, 0.5, "blue"],
-	[3.09, 0.6, "blue"], [5.88, 0.88, "blue"], [8.09, 1.32, "blue"],
-	[9.51, 1.88, "blue"],
-	# Bottom arc (smile)
-	[10.0, -2.5, "blue"], [9.51, -1.88, "blue"], [8.09, -1.32, "blue"],
-	[5.88, -0.88, "blue"], [3.09, -0.6, "blue"], [0.0, -0.5, "blue"],
-	[-3.09, -0.6, "blue"], [-5.88, -0.88, "blue"], [-8.09, -1.32, "blue"],
-	[-9.51, -1.88, "blue"], [-10.0, -2.5, "blue"],
-	# Side columns
-	[-11, 1.0, "blue"], [-11, -0.5, "blue"], [-11, -2.0, "blue"],
-	[11, 1.0, "blue"], [11, -0.5, "blue"], [11, -2.0, "blue"],
-	# Bottom scatter
-	[-6, -3.5, "blue"], [-3, -4.0, "blue"], [0, -4.2, "blue"],
-	[3, -4.0, "blue"], [6, -3.5, "blue"],
+	[-10.0,  2.5,  "blue"], [-9.51,  1.26, "blue"], [-8.09,  0.15, "blue"],
+	[-5.88, -0.74, "blue"], [-3.09, -1.3,  "blue"], [ 0.0,  -1.5,  "blue"],
+	[ 3.09, -1.3,  "blue"], [ 5.88, -0.74, "blue"], [ 8.09,  0.15, "blue"],
+	[ 9.51,  1.26, "blue"], [10.0,   2.5,  "blue"],
+	[ 9.9,  -1.5,  "blue"], [ 9.42, -0.53, "blue"], [ 8.01,  0.35, "blue"],
+	[ 5.82,  1.05, "blue"], [ 3.06,  1.5,  "blue"], [ 0.0,   1.65, "blue"],
+	[-3.06,  1.5,  "blue"], [-5.82,  1.05, "blue"], [-8.01,  0.35, "blue"],
+	[-9.42, -0.53, "blue"], [-9.9,  -1.5,  "blue"],
+	[-11,  1.0,  "blue"], [-11, -0.5,  "blue"], [-11, -2.0,  "blue"], [-10, -3.5,  "blue"],
+	[ 11,  1.0,  "blue"], [ 11, -0.5,  "blue"], [ 11, -2.0,  "blue"], [ 10, -3.5,  "blue"],
+	[-5, -3.5, "blue"], [0, -4.0, "blue"], [5, -3.5, "blue"],
+	[-3,  0.2, "blue"], [3,  0.2, "blue"], [0, -0.8, "blue"],
+	[-6, -2.5, "blue"], [6, -2.5, "blue"],
 ]
 
 # ---------------------------------------------------------------------------
@@ -58,45 +55,25 @@ var level_2 = [
 # Two full peg rings with a diagonal scatter bridging them.
 # ---------------------------------------------------------------------------
 var level_3 = [
-	# Left ring (12 pegs, full loop)
-	[-1.0, -1.0, "blue"],
-	[-1.54, 1.0, "blue"],
-	[-3.0, 2.46, "blue"],
-	[-5.0, 3.0, "blue"],
-	[-7.0, 2.46, "blue"],
-	[-8.46, 1.0, "blue"],
-	[-9.0, -1.0, "blue"],
-	[-8.46, -3.0, "blue"],
-	[-7.0, -4.46, "blue"],
-	[-5.0, -5.0, "blue"],
-	[-3.0, -4.46, "blue"],
-	[-1.54, -3.0, "blue"],
-	# Right ring (12 pegs, full loop)
-	[9.0, -1.0, "blue"],
-	[8.46, 1.0, "blue"],
-	[7.0, 2.46, "blue"],
-	[5.0, 3.0, "blue"],
-	[3.0, 2.46, "blue"],
-	[1.54, 1.0, "blue"],
-	[1.0, -1.0, "blue"],
-	[1.54, -3.0, "blue"],
-	[3.0, -4.46, "blue"],
-	[5.0, -5.0, "blue"],
-	[7.0, -4.46, "blue"],
-	[8.46, -3.0, "blue"],
-	# Bottom row
-	[-10, -6.5, "blue"], [-7, -6.5, "blue"], [-4, -6.5, "blue"],
-	[0, -6.5, "blue"], [4, -6.5, "blue"], [7, -6.5, "blue"], [10, -6.5, "blue"],
+	[-0.5,  0.5,  "blue"], [-1.36, 3.15, "blue"], [-3.61, 4.78, "blue"],
+	[-6.39, 4.78, "blue"], [-8.64, 3.15, "blue"], [-9.5,  0.5,  "blue"],
+	[-8.64,-2.15, "blue"], [-6.39,-3.78, "blue"], [-3.61,-3.78, "blue"], [-1.36,-2.15, "blue"],
+	[ 9.5,  0.5,  "blue"], [ 8.64, 3.15, "blue"], [ 6.39, 4.78, "blue"],
+	[ 3.61, 4.78, "blue"], [ 1.36, 3.15, "blue"], [ 0.5,  0.5,  "blue"],
+	[ 1.36,-2.15, "blue"], [ 3.61,-3.78, "blue"], [ 6.39,-3.78, "blue"], [ 8.64,-2.15, "blue"],
+	[-11,  3.5, "blue"], [-8,  2.5, "blue"], [-2,  3.0, "blue"],
+	[  2, -3.0, "blue"], [ 8, -2.5, "blue"], [11, -3.5, "blue"],
+	[-10, -4.0, "blue"], [-7, -4.0, "blue"], [-4, -4.0, "blue"],
+	[  0, -4.0, "blue"], [ 4, -4.0, "blue"], [ 7, -4.0, "blue"], [10, -4.0, "blue"],
+	[0, 0.5, "blue"],
 ]
+
 # ---------------------------------------------------------------------------
 
 func _ready():
 	spawn_level(GameManager.current_level)
 
 func spawn_level(level_num: int):
-	for child in get_children():
-		child.queue_free()
-	await get_tree().process_frame
 	var layout: Array
 	match level_num:
 		1: layout = level_1
@@ -106,18 +83,29 @@ func spawn_level(level_num: int):
 			push_error("PegSpawner: No layout defined for level " + str(level_num))
 			return
 
-	# Randomly assign ~20% of pegs as orange
-	var orange_count = max(1, int(layout.size() * 0.20))
+	# Randomly assign ~35% of pegs as orange
+	var orange_count = max(1, int(layout.size() * 0.35))
 	var shuffled_indices = range(layout.size())
 	shuffled_indices = Array(shuffled_indices)
 	shuffled_indices.shuffle()
 	var orange_indices = shuffled_indices.slice(0, orange_count)
 
+	# Pick exactly one remaining blue peg to become the green Power Peg
+	var green_index = -1
+	for idx in shuffled_indices:
+		if not (idx in orange_indices):
+			green_index = idx
+			break
+
 	for i in range(layout.size()):
 		var entry = layout[i]
 		var x    = entry[0]
 		var y    = entry[1]
-		var type = "orange" if i in orange_indices else entry[2]
+		var type = entry[2]
+		if i in orange_indices:
+			type = "orange"
+		elif i == green_index:
+			type = "green"
 
 		var peg_scene = _get_scene_for_type(type)
 		if peg_scene == null:
