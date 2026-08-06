@@ -25,3 +25,16 @@ offset_top = 66.0
 offset_right = 57.0
 offset_bottom = 106.0
 alignment = 1
+
+[node name="CowBar" type="CanvasLayer" parent="." unique_id=1443614412]
+
+[node name="CowLabel" type="Label" parent="CowBar" unique_id=375669590]
+offset_top = 1033.0
+offset_right = 40.0
+offset_bottom = 1056.0
+
+[node name="AbilityLabel" type="Label" parent="CowBar" unique_id=565687022]
+offset_top = 1057.0
+offset_right = 40.0
+offset_bottom = 1080.0
+vertical_alignment = 2

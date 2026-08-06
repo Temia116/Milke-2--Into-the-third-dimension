@@ -27,6 +27,33 @@ var orange_pegs_hit: int = 0
 const MAX_LEVEL: int = 3
 var current_level: int = 1
 
+# --- Cow Roster ---
+signal cow_ability_activated
+var selected_cow: String = "none"
+var cow_ability_used: bool = false
+var ability_score_multiplier: int = 1  # used by economy-based abilities like Moolinda
+
+# Which cow is active on which level. Level 1 is the tutorial level - no ability.
+const LEVEL_COWS = {
+	1: "none",
+	2: "bessie",
+	3: "moolinda",
+}
+
+func get_cow_for_level(level: int) -> String:
+	return LEVEL_COWS.get(level, "none")
+
+func activate_cow_ability() -> bool:
+	if cow_ability_used or selected_cow == "none":
+		return false
+	cow_ability_used = true
+	cow_ability_activated.emit()
+	return true
+
+func reset_shot_multipliers():
+	# Call this once a ball's shot has fully resolved (ball_exited)
+	ability_score_multiplier = 1
+
 # --- Score Threshold Bonus ---
 const THRESHOLD_START: int = 5000
 const THRESHOLD_STEP: int = 7000
@@ -44,7 +71,7 @@ func _ready():
 	balls_changed.emit(balls_remaining)
 
 func add_score(base_points: int):
-	score += base_points * multiplier
+	score += base_points * multiplier * ability_score_multiplier
 	score_changed.emit(score)
 	_check_threshold_bonus()
 
@@ -111,6 +138,9 @@ func reset_for_level():
 	current_state = State.IDLE
 	next_threshold = THRESHOLD_START
 	multiplier = 1
+	cow_ability_used = false
+	ability_score_multiplier = 1
+	selected_cow = get_cow_for_level(current_level)
 
 func _process(_delta):
 	if balls_remaining <= 0 and current_state != State.GAME_OVER and current_state != State.LEVEL_COMPLETE:
