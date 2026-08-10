@@ -109,6 +109,8 @@ func on_peg_hit(peg_type: String):
 		"green":
 			add_score(GREEN_POINTS)
 			# green special ability hook - add later
+		"stone":
+			pass  # stone pegs are indestructible bumpers - no score, no effect
 
 func on_shot_fired():
 	# Call this when a new ball is launched so the multiplier resets per shot

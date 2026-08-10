@@ -71,6 +71,10 @@ orange_peg_scene = ExtResource("7_b2yaj")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8644419, -16)
 mesh = SubResource("QuadMesh_q712h")
 
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=796537552]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8644419, -16)
+mesh = SubResource("QuadMesh_q712h")
+
 [node name="WinScreen" parent="." unique_id=2056049492 instance=ExtResource("10_q712h")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1053124792]
@@ -91,7 +95,7 @@ mesh = SubResource("QuadMesh_6l3rs")
 physics_material_override = SubResource("PhysicsMaterial_umdqk")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LeftBorder/StaticBody3D" unique_id=1283888890]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.023773193, 0)
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 0, -0.023773193, 0)
 shape = SubResource("BoxShape3D_umdqk")
 
 [node name="RightBorder" type="MeshInstance3D" parent="." unique_id=556645193]
@@ -102,5 +106,5 @@ mesh = SubResource("QuadMesh_6l3rs")
 physics_material_override = SubResource("PhysicsMaterial_6l3rs")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RightBorder/StaticBody3D" unique_id=92779503]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.023773193, 0)
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 0, -0.023773193, 0)
 shape = SubResource("BoxShape3D_umdqk")
