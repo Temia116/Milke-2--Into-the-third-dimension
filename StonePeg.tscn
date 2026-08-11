@@ -1,18 +1,22 @@
 [gd_scene format=3 uid="uid://rvkg7jcmbsj3"]
 
 [ext_resource type="Script" uid="uid://fd3fskoeixvy" path="res://peg.gd" id="1_nm2iy"]
-[ext_resource type="PackedScene" uid="uid://duudiev2wq5tu" path="res://Assets/TEAL BALL (peg).glb" id="2_e1pnx"]
+[ext_resource type="Material" path="res://StonePegMat.tres" id="2_nm2iy"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_8xdbv"]
-radius = 0.31563377
+radius = 0.31419846
 
-[node name="BluePeg" type="StaticBody3D" unique_id=2026480295]
+[sub_resource type="SphereMesh" id="SphereMesh_g4v7s"]
+material = ExtResource("2_nm2iy")
+
+[node name="StonePeg" type="StaticBody3D" unique_id=2026480295]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 script = ExtResource("1_nm2iy")
-
-[node name="TEAL BALL (peg)" parent="." unique_id=1300227685 instance=ExtResource("2_e1pnx")]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1073096763]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 shape = SubResource("SphereShape3D_8xdbv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=51541217]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+mesh = SubResource("SphereMesh_g4v7s")

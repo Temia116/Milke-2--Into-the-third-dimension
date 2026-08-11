@@ -24,6 +24,16 @@ func _ready():
 	mat.cull_mode = BaseMaterial3D.CULL_DISABLED
 	aim_mesh_instance.material_override = mat
 	add_child(aim_mesh_instance)
+	GameManager.cow_ability_activated.connect(_on_cow_ability_activated)
+
+func _on_cow_ability_activated():
+	match GameManager.selected_cow:
+		"bessie":
+			bessie_next_shot = true
+			print("Bessie's ability is active! Next shot is UDDERLY MASSIVE.")
+		"moolinda":
+			GameManager.ability_score_multiplier = 2
+			print("Moolinda's ability is active! Next shot scores DOUBLE CREAM.")
 
 func _get_cursor_world_pos() -> Vector3:
 	var mouse_pos = get_viewport().get_mouse_position()
@@ -145,19 +155,6 @@ func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed and can_shoot:
 			_shoot()
-	if event is InputEventKey:
-		if event.keycode == KEY_E and event.pressed and can_shoot:
-			_activate_cow_ability()
-
-func _activate_cow_ability():
-	if GameManager.activate_cow_ability():
-		match GameManager.selected_cow:
-			"bessie":
-				bessie_next_shot = true
-				print("Bessie activated! Next shot is UDDERLY MASSIVE.")
-			"moolinda":
-				GameManager.ability_score_multiplier = 2
-				print("Moolinda activated! Next shot scores DOUBLE CREAM.")
 
 func _on_ball_exited():
 	can_shoot = true

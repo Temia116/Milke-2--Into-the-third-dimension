@@ -43,12 +43,12 @@ const LEVEL_COWS = {
 func get_cow_for_level(level: int) -> String:
 	return LEVEL_COWS.get(level, "none")
 
-func activate_cow_ability() -> bool:
-	if cow_ability_used or selected_cow == "none":
-		return false
+func grant_and_activate_ability():
+	# Triggered by the green Power Peg - the only way to activate a cow's ability.
+	if selected_cow == "none" or cow_ability_used:
+		return
 	cow_ability_used = true
 	cow_ability_activated.emit()
-	return true
 
 func reset_shot_multipliers():
 	# Call this once a ball's shot has fully resolved (ball_exited)

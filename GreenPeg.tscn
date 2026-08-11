@@ -1,17 +1,31 @@
 [gd_scene format=3 uid="uid://sna5iijugoof"]
 
-[ext_resource type="PackedScene" uid="uid://tnrlvijv6egj" path="res://Assets/GREEN BALL (special ability).glb" id="1_nd2hd"]
 [ext_resource type="Script" uid="uid://cvwh2xsxm6war" path="res://green_peg.gd" id="1_sekef"]
+[ext_resource type="Material" path="res://PowerPegMat.tres" id="3_mftmk"]
+[ext_resource type="Material" path="res://SparkleMat.tres" id="3_urobh"]
+[ext_resource type="Script" uid="uid://bas77yesf52dh" path="res://Sparkle.gd" id="4_urobh"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_nd2hd"]
-radius = 0.42546406
+radius = 0.6662745
+
+[sub_resource type="SphereMesh" id="SphereMesh_g4v7s"]
+material = ExtResource("3_mftmk")
+
+[sub_resource type="PrismMesh" id="PrismMesh_g4v7s"]
+material = ExtResource("3_urobh")
 
 [node name="GreenPeg" type="StaticBody3D" unique_id=1812975418]
 script = ExtResource("1_sekef")
 
-[node name="GREEN BALL (special ability)" parent="." unique_id=602506117 instance=ExtResource("1_nd2hd")]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1065520258]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
 shape = SubResource("SphereShape3D_nd2hd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=178850213]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
+mesh = SubResource("SphereMesh_g4v7s")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D" unique_id=793802912]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.6010537, 0)
+mesh = SubResource("PrismMesh_g4v7s")
+script = ExtResource("4_urobh")

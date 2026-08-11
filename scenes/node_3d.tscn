@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://ck5lws50p4dx1" path="res://Assets/udder.gd" id="5_aj7ea"]
 [ext_resource type="Script" uid="uid://crmog3p0rdnfy" path="res://PegSpawner.gd" id="5_oqwcg"]
 [ext_resource type="PackedScene" uid="uid://cg6182onefv5p" path="res://BluePeg.tscn" id="6_a6664"]
+[ext_resource type="PackedScene" uid="uid://sna5iijugoof" path="res://GreenPeg.tscn" id="7_6l3rs"]
 [ext_resource type="PackedScene" uid="uid://bkv6tjg1ufssx" path="res://HUD.tscn" id="7_10v3s"]
 [ext_resource type="PackedScene" uid="uid://bgcvjd2tb2kv0" path="res://OrangePeg.tscn" id="7_b2yaj"]
 [ext_resource type="PackedScene" uid="uid://bieqhn7vyuxbu" path="res://GameOver.tscn" id="8_cptob"]
@@ -62,6 +63,7 @@ transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, -6
 script = ExtResource("5_oqwcg")
 blue_peg_scene = ExtResource("6_a6664")
 orange_peg_scene = ExtResource("7_b2yaj")
+green_peg_scene = ExtResource("7_6l3rs")
 
 [node name="HUD" parent="." unique_id=289833468 instance=ExtResource("7_10v3s")]
 

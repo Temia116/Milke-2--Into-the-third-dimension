@@ -4,68 +4,63 @@ extends Node3D
 @export var blue_peg_scene: PackedScene
 @export var orange_peg_scene: PackedScene
 @export var green_peg_scene: PackedScene
+@export var stone_peg_scene: PackedScene
 
 # ---------------------------------------------------------------------------
 # LEVEL 1 — The Pasture (Tutorial)
-# Classic staggered grid. Simple and open — teaches the basics.
 # ---------------------------------------------------------------------------
 var level_1 = [
-	# Row 1
 	[-12, 3.0, "blue"], [-8, 3.0, "blue"], [-4, 3.0, "blue"], [0, 3.0, "blue"],
 	[4, 3.0, "blue"], [8, 3.0, "blue"], [12, 3.0, "blue"],
-	# Row 2
 	[-10, 1.5, "blue"], [-6, 1.5, "blue"], [-2, 1.5, "blue"], [2, 1.5, "blue"],
 	[6, 1.5, "blue"], [10, 1.5, "blue"],
-	# Row 3
 	[-12, 0.0, "blue"], [-8, 0.0, "blue"], [-4, 0.0, "blue"], [0, 0.0, "blue"],
 	[4, 0.0, "blue"], [8, 0.0, "blue"], [12, 0.0, "blue"],
-	# Row 4
 	[-10, -1.5, "blue"], [-6, -1.5, "blue"], [-2, -1.5, "blue"], [2, -1.5, "blue"],
 	[6, -1.5, "blue"], [10, -1.5, "blue"],
-	# Row 5
 	[-12, -3.0, "blue"], [-8, -3.0, "blue"], [-4, -3.0, "blue"], [0, -3.0, "blue"],
 	[4, -3.0, "blue"], [8, -3.0, "blue"], [12, -3.0, "blue"],
-	# Row 6
 	[-10, -4.5, "blue"], [-6, -4.5, "blue"], [-2, -4.5, "blue"], [2, -4.5, "blue"],
 	[6, -4.5, "blue"], [10, -4.5, "blue"]
 ]
 
 # ---------------------------------------------------------------------------
 # LEVEL 2 — The Smile (Twin Arcs)
-# Two curved arcs — a frown on top, a smile below.
 # ---------------------------------------------------------------------------
 var level_2 = [
-	[-10.0,  2.5,  "blue"], [-9.51,  1.26, "blue"], [-8.09,  0.15, "blue"],
-	[-5.88, -0.74, "blue"], [-3.09, -1.3,  "blue"], [ 0.0,  -1.5,  "blue"],
-	[ 3.09, -1.3,  "blue"], [ 5.88, -0.74, "blue"], [ 8.09,  0.15, "blue"],
-	[ 9.51,  1.26, "blue"], [10.0,   2.5,  "blue"],
-	[ 9.9,  -1.5,  "blue"], [ 9.42, -0.53, "blue"], [ 8.01,  0.35, "blue"],
-	[ 5.82,  1.05, "blue"], [ 3.06,  1.5,  "blue"], [ 0.0,   1.65, "blue"],
-	[-3.06,  1.5,  "blue"], [-5.82,  1.05, "blue"], [-8.01,  0.35, "blue"],
-	[-9.42, -0.53, "blue"], [-9.9,  -1.5,  "blue"],
-	[-11,  1.0,  "blue"], [-11, -0.5,  "blue"], [-11, -2.0,  "blue"], [-10, -3.5,  "blue"],
-	[ 11,  1.0,  "blue"], [ 11, -0.5,  "blue"], [ 11, -2.0,  "blue"], [ 10, -3.5,  "blue"],
-	[-5, -3.5, "blue"], [0, -4.0, "blue"], [5, -3.5, "blue"],
-	[-3,  0.2, "blue"], [3,  0.2, "blue"], [0, -0.8, "blue"],
-	[-6, -2.5, "blue"], [6, -2.5, "blue"],
+	[-9.51, 1.88, "blue"], [-8.09, 1.32, "blue"],
+	[-5.88, 0.88, "blue"], [-3.09, 0.6, "blue"], [0.0, 0.5, "blue"],
+	[3.09, 0.6, "blue"], [5.88, 0.88, "blue"], [8.09, 1.32, "blue"],
+	[9.51, 1.88, "blue"],
+	[10.0, -2.5, "blue"], [9.51, -1.88, "blue"], [8.09, -1.32, "blue"],
+	[5.88, -0.88, "blue"], [3.09, -0.6, "blue"], [0.0, -0.5, "blue"],
+	[-3.09, -0.6, "blue"], [-5.88, -0.88, "blue"], [-8.09, -1.32, "blue"],
+	[-9.51, -1.88, "blue"], [-10.0, -2.5, "blue"],
+	[-11, 1.0, "blue"], [-11, -0.5, "blue"], [-11, -2.0, "blue"],
+	[11, 1.0, "blue"], [11, -0.5, "blue"], [11, -2.0, "blue"],
+	[-6, -3.5, "blue"], [-3, -4.0, "blue"], [0, -4.2, "blue"],
+	[3, -4.0, "blue"], [6, -3.5, "blue"],
 ]
 
 # ---------------------------------------------------------------------------
-# LEVEL 3 — The Rings (Twin Circles + Diagonal)
-# Two full peg rings with a diagonal scatter bridging them.
+# LEVEL 3 — The Rings (Twin Circles)
 # ---------------------------------------------------------------------------
 var level_3 = [
-	[-0.5,  0.5,  "blue"], [-1.36, 3.15, "blue"], [-3.61, 4.78, "blue"],
-	[-6.39, 4.78, "blue"], [-8.64, 3.15, "blue"], [-9.5,  0.5,  "blue"],
-	[-8.64,-2.15, "blue"], [-6.39,-3.78, "blue"], [-3.61,-3.78, "blue"], [-1.36,-2.15, "blue"],
-	[ 9.5,  0.5,  "blue"], [ 8.64, 3.15, "blue"], [ 6.39, 4.78, "blue"],
-	[ 3.61, 4.78, "blue"], [ 1.36, 3.15, "blue"], [ 0.5,  0.5,  "blue"],
-	[ 1.36,-2.15, "blue"], [ 3.61,-3.78, "blue"], [ 6.39,-3.78, "blue"], [ 8.64,-2.15, "blue"],
-	[-11,  3.5, "blue"], [-8,  2.5, "blue"], [-2,  3.0, "blue"],
-	[  2, -3.0, "blue"], [ 8, -2.5, "blue"], [11, -3.5, "blue"],
-	[-10, -4.0, "blue"], [-7, -4.0, "blue"], [-4, -4.0, "blue"],
-	[  0, -4.0, "blue"], [ 4, -4.0, "blue"], [ 7, -4.0, "blue"], [10, -4.0, "blue"],
-	[0, 0.5, "blue"],
+	# Left ring (12 pegs, full loop)
+	[-1.0, -1.0, "blue"], [-1.54, 1.0, "blue"], [-3.0, 2.46, "blue"],
+	[-5.0, 3.0, "blue"], [-7.0, 2.46, "blue"], [-8.46, 1.0, "blue"],
+	[-9.0, -1.0, "blue"], [-8.46, -3.0, "blue"], [-7.0, -4.46, "blue"],
+	[-5.0, -5.0, "blue"], [-3.0, -4.46, "blue"], [-1.54, -3.0, "blue"],
+	# Right ring (12 pegs, full loop)
+	[9.0, -1.0, "blue"], [8.46, 1.0, "blue"], [7.0, 2.46, "blue"],
+	[5.0, 3.0, "blue"], [3.0, 2.46, "blue"], [1.54, 1.0, "blue"],
+	[1.0, -1.0, "blue"], [1.54, -3.0, "blue"], [3.0, -4.46, "blue"],
+	[5.0, -5.0, "blue"], [7.0, -4.46, "blue"], [8.46, -3.0, "blue"],
+	# Bottom row
+	[-10, -6.5, "blue"], [-7, -6.5, "blue"], [-4, -6.5, "blue"],
+	[0, -6.5, "blue"], [4, -6.5, "blue"], [7, -6.5, "blue"], [10, -6.5, "blue"],
+	# Stone bumpers - centre of each ring, permanent obstacles
+	[-5.0, -1.0, "stone"], [5.0, -1.0, "stone"],
 ]
 
 # ---------------------------------------------------------------------------
@@ -83,14 +78,18 @@ func spawn_level(level_num: int):
 			push_error("PegSpawner: No layout defined for level " + str(level_num))
 			return
 
-	# Randomly assign ~35% of pegs as orange
-	var orange_count = max(1, int(layout.size() * 0.35))
-	var shuffled_indices = range(layout.size())
-	shuffled_indices = Array(shuffled_indices)
+	# Only randomize orange/green among entries that are still "blue" in the
+	# layout - stone pegs (and any other fixed types) are never touched.
+	var blue_indices = []
+	for i in range(layout.size()):
+		if layout[i][2] == "blue":
+			blue_indices.append(i)
+
+	var orange_count = max(1, int(blue_indices.size() * 0.35))
+	var shuffled_indices = blue_indices.duplicate()
 	shuffled_indices.shuffle()
 	var orange_indices = shuffled_indices.slice(0, orange_count)
 
-	# Pick exactly one remaining blue peg to become the green Power Peg
 	var green_index = -1
 	for idx in shuffled_indices:
 		if not (idx in orange_indices):
@@ -116,8 +115,6 @@ func spawn_level(level_num: int):
 		add_child(peg)
 		peg.position = Vector3(x, y, 0.0)
 
-	# Wait one frame so all pegs finish _ready() and join their groups
-	# THEN tell GameManager the real orange count
 	await get_tree().process_frame
 	GameManager.total_orange_pegs = get_tree().get_nodes_in_group("orange_pegs").size()
 	print("Level ", level_num, " loaded. Orange pegs: ", GameManager.total_orange_pegs)
@@ -127,4 +124,5 @@ func _get_scene_for_type(type: String) -> PackedScene:
 		"blue":   return blue_peg_scene
 		"orange": return orange_peg_scene
 		"green":  return green_peg_scene
+		"stone":  return stone_peg_scene
 	return null
