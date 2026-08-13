@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://lx5jsxt48yjs"
+path="res://.godot/imported/Kevin MacLeod Aces High.mp3-ac6925d794c05af970f29a6a9fbd9a8c.mp3str"
+
+[deps]
+
+source_file="res://Assets/Kevin MacLeod Aces High.mp3"
+dest_files=["res://.godot/imported/Kevin MacLeod Aces High.mp3-ac6925d794c05af970f29a6a9fbd9a8c.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -143,6 +143,7 @@ func reset_for_level():
 	cow_ability_used = false
 	ability_score_multiplier = 1
 	selected_cow = get_cow_for_level(current_level)
+	MusicManager.play_for_level(current_level)
 
 func _process(_delta):
 	if balls_remaining <= 0 and current_state != State.GAME_OVER and current_state != State.LEVEL_COMPLETE:
