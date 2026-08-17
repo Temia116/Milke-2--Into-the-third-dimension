@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dsfgcf554itnu" path="res://scenes/node_3d.gd" id="1_5t4e2"]
 [ext_resource type="PackedScene" uid="uid://boqrni1yve7dy" path="res://Assets/Cow.fbx" id="1_ns6u7"]
 [ext_resource type="PackedScene" uid="uid://dyuicrvwn26yu" path="res://WhiteBall.tscn" id="2_5t4e2"]
+[ext_resource type="PackedScene" uid="uid://7thpllxnoxp6" path="res://main menu.tscn" id="3_2u1at"]
 [ext_resource type="PackedScene" uid="uid://d2gxjipg82mu1" path="res://Assets/udder.glb" id="4_1enmr"]
 [ext_resource type="Script" uid="uid://ck5lws50p4dx1" path="res://Assets/udder.gd" id="5_aj7ea"]
 [ext_resource type="Script" uid="uid://crmog3p0rdnfy" path="res://PegSpawner.gd" id="5_oqwcg"]
@@ -47,6 +48,8 @@ bounce = 0.5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.061877728, 0)
 script = ExtResource("1_5t4e2")
 ball_scene = ExtResource("2_5t4e2")
+launch_speed = 25.0
+pause_menu_scene = ExtResource("3_2u1at")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=996338804]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15.5)

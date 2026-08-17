@@ -6,6 +6,7 @@ extends Node
 @export var level_1_track: AudioStream
 @export var level_2_track: AudioStream
 @export var level_3_track: AudioStream
+@export var menu_track: AudioStream
 
 @onready var player: AudioStreamPlayer = AudioStreamPlayer.new()
 
@@ -28,6 +29,17 @@ func play_for_level(level_num: int):
 	player.stream = track
 	player.play()
 	current_level_playing = level_num
+
+func play_menu():
+	if current_level_playing == 0 and player.playing:
+		return  # already playing menu music
+	if menu_track == null:
+		player.stop()
+		current_level_playing = -1
+		return
+	player.stream = menu_track
+	player.play()
+	current_level_playing = 0  # 0 = menu, distinct from any real level number
 
 func stop_music():
 	player.stop()

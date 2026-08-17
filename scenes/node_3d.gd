@@ -10,6 +10,9 @@ var aim_mesh: ImmediateMesh
 var aim_mesh_instance: MeshInstance3D
 var current_shoot_dir: Vector3 = Vector3.DOWN
 var bessie_next_shot: bool = false
+var pause_menu_instance: CanvasLayer = null
+
+@export var pause_menu_scene: PackedScene
 
 const GRAVITY_SCALE: float = 1.75
 const GRAVITY: float = -9.8
@@ -155,6 +158,23 @@ func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed and can_shoot:
 			_shoot()
+	if event is InputEventKey:
+		if event.keycode == KEY_ESCAPE and event.pressed:
+			_toggle_pause_menu()
+
+func _toggle_pause_menu():
+	if pause_menu_instance != null and is_instance_valid(pause_menu_instance):
+		pause_menu_instance.queue_free()
+		pause_menu_instance = null
+		get_tree().paused = false
+		return
+	if pause_menu_scene == null:
+		push_error("No pause_menu_scene assigned!")
+		return
+	pause_menu_instance = pause_menu_scene.instantiate()
+	get_tree().root.add_child(pause_menu_instance)
+	pause_menu_instance.process_mode = Node.PROCESS_MODE_ALWAYS
+	get_tree().paused = true
 
 func _on_ball_exited():
 	can_shoot = true

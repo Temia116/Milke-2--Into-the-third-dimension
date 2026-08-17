@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://8arr028mr0ai"]
+
+[ext_resource type="Script" uid="uid://dge2ewp8lucbd" path="res://PauseMenu.gd" id="1_nov15"]
+
+[node name="PauseMenu" type="Control" unique_id=642749454]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_nov15")
+
+[node name="ResumeButton" type="Button" parent="." unique_id=1312894282]
+layout_mode = 0
+offset_left = 771.0
+offset_top = 391.0
+offset_right = 972.0
+offset_bottom = 468.0
+theme_override_font_sizes/font_size = 50
+text = "Resume"
+
+[node name="MainMenuButton" type="Button" parent="." unique_id=124319982]
+layout_mode = 0
+offset_left = 736.0
+offset_top = 517.0
+offset_right = 1018.0
+offset_bottom = 594.0
+theme_override_font_sizes/font_size = 50
+text = "Main menu"
