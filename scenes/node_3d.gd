@@ -10,7 +10,7 @@ var aim_mesh: ImmediateMesh
 var aim_mesh_instance: MeshInstance3D
 var current_shoot_dir: Vector3 = Vector3.DOWN
 var bessie_next_shot: bool = false
-var pause_menu_instance: CanvasLayer = null
+var pause_menu_instance: Node = null
 
 @export var pause_menu_scene: PackedScene
 
@@ -28,6 +28,10 @@ func _ready():
 	aim_mesh_instance.material_override = mat
 	add_child(aim_mesh_instance)
 	GameManager.cow_ability_activated.connect(_on_cow_ability_activated)
+
+	var sky_plane = get_node_or_null("MeshInstance3D")
+	if sky_plane:
+		EnvironmentManager.register_sky_plane(sky_plane)
 
 func _on_cow_ability_activated():
 	match GameManager.selected_cow:
@@ -160,21 +164,26 @@ func _input(event):
 			_shoot()
 	if event is InputEventKey:
 		if event.keycode == KEY_ESCAPE and event.pressed:
+			print("ESCAPE PRESSED - calling toggle pause")
 			_toggle_pause_menu()
 
 func _toggle_pause_menu():
+	print("toggle_pause_menu called. pause_menu_instance = ", pause_menu_instance)
 	if pause_menu_instance != null and is_instance_valid(pause_menu_instance):
+		print("closing existing pause menu")
 		pause_menu_instance.queue_free()
 		pause_menu_instance = null
 		get_tree().paused = false
 		return
 	if pause_menu_scene == null:
-		push_error("No pause_menu_scene assigned!")
+		print("ERROR: pause_menu_scene is null! Assign it in the Inspector.")
 		return
+	print("instancing pause menu scene: ", pause_menu_scene)
 	pause_menu_instance = pause_menu_scene.instantiate()
 	get_tree().root.add_child(pause_menu_instance)
 	pause_menu_instance.process_mode = Node.PROCESS_MODE_ALWAYS
 	get_tree().paused = true
+	print("pause menu added. tree paused = ", get_tree().paused)
 
 func _on_ball_exited():
 	can_shoot = true

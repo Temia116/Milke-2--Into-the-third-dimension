@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+EnvironmentManager="*uid://b5l637p78nkma"
 MusicManager="*uid://cqwk6oy7u0o1e"
 GameManager="*uid://dxq3e1oucs6in"
 

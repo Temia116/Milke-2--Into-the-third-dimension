@@ -44,6 +44,12 @@ func _position_buttons():
 	var viewport_size = get_viewport().get_visible_rect().size
 	var center_x = viewport_size.x / 2.0
 
+	resume_button.set_anchors_preset(Control.PRESET_TOP_LEFT)
+	main_menu_button.set_anchors_preset(Control.PRESET_TOP_LEFT)
+
+	resume_button.visible = true
+	main_menu_button.visible = true
+
 	resume_button.position = Vector2(center_x - resume_button.size.x / 2.0, 380)
 	main_menu_button.position = Vector2(center_x - main_menu_button.size.x / 2.0, 450)
 
@@ -54,5 +60,12 @@ func _on_resume_pressed():
 func _on_main_menu_pressed():
 	get_tree().paused = false
 	MusicManager.play_menu()
+
+	var old_scene = get_tree().current_scene
+	var new_scene = load("res://MainMenu.tscn").instantiate()
+	get_tree().root.add_child(new_scene)
+	get_tree().current_scene = new_scene
+
+	if old_scene:
+		old_scene.queue_free()
 	queue_free()
-	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

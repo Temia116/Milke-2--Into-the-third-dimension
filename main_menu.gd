@@ -5,12 +5,10 @@ extends Control
 @onready var quit_button = $QuitButton
 
 func _ready():
+	get_tree().paused = false  # safety net in case we arrived here still paused
 	play_button.pressed.connect(_on_play_pressed)
 	quit_button.pressed.connect(_on_quit_pressed)
 	MusicManager.play_menu()
-
-	# Wait a frame so the viewport reports its real size before we size things to it
-	await get_tree().process_frame
 	_setup_background()
 	_setup_title()
 	_position_buttons()
