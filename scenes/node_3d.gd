@@ -29,9 +29,9 @@ func _ready():
 	add_child(aim_mesh_instance)
 	GameManager.cow_ability_activated.connect(_on_cow_ability_activated)
 
-	var sky_plane = get_node_or_null("MeshInstance3D")
-	if sky_plane:
-		EnvironmentManager.register_sky_plane(sky_plane)
+	var sky_plane_1 = get_node_or_null("MeshInstance3D")
+	var sky_plane_2 = get_node_or_null("MeshInstance3D2")
+	EnvironmentManager.register_sky_planes([sky_plane_1, sky_plane_2])
 
 func _on_cow_ability_activated():
 	match GameManager.selected_cow:

@@ -90,11 +90,14 @@ func spawn_level(level_num: int):
 	shuffled_indices.shuffle()
 	var orange_indices = shuffled_indices.slice(0, orange_count)
 
+	# Pick exactly one remaining blue peg to become the green Power Peg -
+	# but only if this level actually has a cow ability to grant.
 	var green_index = -1
-	for idx in shuffled_indices:
-		if not (idx in orange_indices):
-			green_index = idx
-			break
+	if GameManager.get_cow_for_level(level_num) != "none":
+		for idx in shuffled_indices:
+			if not (idx in orange_indices):
+				green_index = idx
+				break
 
 	for i in range(layout.size()):
 		var entry = layout[i]

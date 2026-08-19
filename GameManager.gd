@@ -55,8 +55,8 @@ func reset_shot_multipliers():
 	ability_score_multiplier = 1
 
 # --- Score Threshold Bonus ---
-const THRESHOLD_START: int = 5000
-const THRESHOLD_STEP: int = 7000
+const THRESHOLD_START: int = 8000
+const THRESHOLD_STEP: int = 10000
 var next_threshold: int = THRESHOLD_START
 
 # --- Minimum score required to win a level, even with all oranges cleared ---

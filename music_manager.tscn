@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" uid="uid://hhn6e4ofimu5" path="res://Assets/MusicManager.gd" id="1_tylfe"]
 [ext_resource type="AudioStream" uid="uid://lx5jsxt48yjs" path="res://Assets/Kevin MacLeod Aces High.mp3" id="2_vnq4w"]
-[ext_resource type="AudioStream" uid="uid://lbxqyn42mjdi" path="res://Assets/Alan walker - spectre (instrumental).mp3" id="3_vnq4w"]
+[ext_resource type="AudioStream" uid="uid://dxirg8bnqqs4h" path="res://Assets/Kevin MacLeod - Cipher.mp3" id="3_0rsql"]
 [ext_resource type="AudioStream" uid="uid://drqib8j8cgbt8" path="res://Assets/The fat rat - windfall.mp3" id="4_bycfj"]
 [ext_resource type="AudioStream" uid="uid://bqs87m0i6hct6" path="res://Assets/Kevin MacLeod - Electrodoodle.mp3" id="5_0rsql"]
 
 [node name="MusicManager" type="Node" unique_id=1030705596]
 script = ExtResource("1_tylfe")
 level_1_track = ExtResource("2_vnq4w")
-level_2_track = ExtResource("3_vnq4w")
+level_2_track = ExtResource("3_0rsql")
 level_3_track = ExtResource("4_bycfj")
 menu_track = ExtResource("5_0rsql")
