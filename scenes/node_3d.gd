@@ -90,11 +90,7 @@ func _shoot():
 
 	if bessie_next_shot:
 		ball.scale = Vector3(3, 3, 3)
-		var phys_mat = PhysicsMaterial.new()
-		phys_mat.bounce = 0.05
-		phys_mat.friction = 0.1
-		ball.physics_material_override = phys_mat
-		ball.mass = 6.0
+		ball.start_bulldozer(_get_launch_velocity())
 		bessie_next_shot = false
 
 func _draw_aim_line():
@@ -187,4 +183,4 @@ func _toggle_pause_menu():
 
 func _on_ball_exited():
 	can_shoot = true
-	GameManager.reset_shot_multipliers()
+	GameManager.reset_shot_multipliers() 
