@@ -4,7 +4,6 @@ extends Node3D
 @export var blue_peg_scene: PackedScene
 @export var orange_peg_scene: PackedScene
 @export var green_peg_scene: PackedScene
-@export var stone_peg_scene: PackedScene
 
 # ---------------------------------------------------------------------------
 # LEVEL 1 — The Pasture (Tutorial)
@@ -59,8 +58,6 @@ var level_3 = [
 	# Bottom row
 	[-10, -6.5, "blue"], [-7, -6.5, "blue"], [-4, -6.5, "blue"],
 	[0, -6.5, "blue"], [4, -6.5, "blue"], [7, -6.5, "blue"], [10, -6.5, "blue"],
-	# Stone bumpers - centre of each ring, permanent obstacles
-	[-5.0, -1.0, "stone"], [5.0, -1.0, "stone"],
 ]
 
 # ---------------------------------------------------------------------------
@@ -78,8 +75,7 @@ func spawn_level(level_num: int):
 			push_error("PegSpawner: No layout defined for level " + str(level_num))
 			return
 
-	# Only randomize orange/green among entries that are still "blue" in the
-	# layout - stone pegs (and any other fixed types) are never touched.
+	# Only randomize orange/green among entries that are still "blue" in the layout.
 	var blue_indices = []
 	for i in range(layout.size()):
 		if layout[i][2] == "blue":
@@ -127,5 +123,4 @@ func _get_scene_for_type(type: String) -> PackedScene:
 		"blue":   return blue_peg_scene
 		"orange": return orange_peg_scene
 		"green":  return green_peg_scene
-		"stone":  return stone_peg_scene
 	return null

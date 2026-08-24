@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://g4vddgoytn0n"]
+
+[ext_resource type="Script" uid="uid://8h6rrhkojynt" path="res://SFXManager.gd" id="1_onrww"]
+[ext_resource type="AudioStream" uid="uid://drao8tvkc277g" path="res://Assets/launch.wav" id="2_036ih"]
+[ext_resource type="AudioStream" uid="uid://buxx3r0weixxp" path="res://Assets/blue_peg.wav" id="3_pb1tk"]
+[ext_resource type="AudioStream" uid="uid://cyvv5braha1yy" path="res://Assets/milk_peg.wav" id="4_m8508"]
+[ext_resource type="AudioStream" uid="uid://bx270ghyj3xt1" path="res://Assets/green_peg.wav" id="5_7xcwr"]
+[ext_resource type="AudioStream" uid="uid://c8i5ru2tg4j3f" path="res://Assets/multiplier_stinger.wav" id="6_qhl4m"]
+[ext_resource type="AudioStream" uid="uid://wfe1icwtr3b1" path="res://Assets/truck_catch.wav" id="7_drpjb"]
+[ext_resource type="AudioStream" uid="uid://bf1e0n7ggn8ax" path="res://Assets/level_clear.wav" id="8_hj3yc"]
+[ext_resource type="AudioStream" uid="uid://jc3f02me2qsc" path="res://Assets/fail.wav" id="9_5xueu"]
+
+[node name="SFXManager" type="Node" unique_id=1578328087]
+script = ExtResource("1_onrww")
+launch_sfx = ExtResource("2_036ih")
+blue_peg_sfx = ExtResource("3_pb1tk")
+milk_peg_sfx = ExtResource("4_m8508")
+green_peg_sfx = ExtResource("5_7xcwr")
+multiplier_stinger_sfx = ExtResource("6_qhl4m")
+truck_catch_sfx = ExtResource("7_drpjb")
+level_clear_sfx = ExtResource("8_hj3yc")
+fail_sfx = ExtResource("9_5xueu")

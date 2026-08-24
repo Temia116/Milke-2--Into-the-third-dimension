@@ -97,20 +97,21 @@ func on_peg_hit(peg_type: String):
 				multiplier = 2
 			else:
 				multiplier += 1
+			SFXManager.play_multiplier_stinger(multiplier)
 			if orange_pegs_hit >= total_orange_pegs:
 				if score >= MIN_SCORE_TO_WIN:
 					level_complete.emit()
 					current_state = State.LEVEL_COMPLETE
+					SFXManager.play_level_clear()
 				else:
 					current_state = State.GAME_OVER
 					game_over.emit()
+					SFXManager.play_fail()
 		"blue":
 			add_score(BLUE_POINTS)
 		"green":
 			add_score(GREEN_POINTS)
 			# green special ability hook - add later
-		"stone":
-			pass  # stone pegs are indestructible bumpers - no score, no effect
 
 func on_shot_fired():
 	# Call this when a new ball is launched so the multiplier resets per shot
@@ -122,6 +123,7 @@ func on_ball_caught():
 	score += 2000
 	score_changed.emit(score)
 	_check_threshold_bonus()
+	SFXManager.play_truck_catch()
 	print("Free ball awarded! Balls remaining: ", balls_remaining)
 
 func on_ball_launched():
@@ -149,3 +151,4 @@ func _process(_delta):
 	if balls_remaining <= 0 and current_state != State.GAME_OVER and current_state != State.LEVEL_COMPLETE:
 		current_state = State.GAME_OVER
 		game_over.emit()
+		SFXManager.play_fail()

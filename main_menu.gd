@@ -12,6 +12,7 @@ func _ready():
 	_setup_background()
 	_setup_title()
 	_position_buttons()
+	_setup_level_select_button()
 
 func _setup_background():
 	var viewport_size = get_viewport().get_visible_rect().size
@@ -65,3 +66,17 @@ func _on_play_pressed():
 
 func _on_quit_pressed():
 	get_tree().quit()
+
+func _setup_level_select_button():
+	var viewport_size = get_viewport().get_visible_rect().size
+	var center_x = viewport_size.x / 2.0
+
+	var button = Button.new()
+	button.text = "Select Level"
+	button.custom_minimum_size = Vector2(180, 50)
+	button.position = Vector2(center_x - 90, 560)
+	button.pressed.connect(_on_select_level_pressed)
+	add_child(button)
+
+func _on_select_level_pressed():
+	get_tree().change_scene_to_file("res://LevelSelect.tscn")

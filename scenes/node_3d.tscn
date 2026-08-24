@@ -13,7 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://bgcvjd2tb2kv0" path="res://OrangePeg.tscn" id="7_b2yaj"]
 [ext_resource type="PackedScene" uid="uid://bieqhn7vyuxbu" path="res://GameOver.tscn" id="8_cptob"]
 [ext_resource type="Texture2D" uid="uid://b20unte2bx2tx" path="res://Assets/suburban_soccer_park_4k.exr" id="9_q712h"]
+[ext_resource type="Texture2D" uid="uid://dvbopptitauyg" path="res://Assets/fart.jpg" id="10_hup21"]
 [ext_resource type="PackedScene" uid="uid://dbhev6405q52o" path="res://WinScreen.tscn" id="10_q712h"]
+[ext_resource type="Texture2D" uid="uid://gjtqcva8wb1n" path="res://Assets/stupid.jpg" id="11_4cwgp"]
 [ext_resource type="PackedScene" uid="uid://bmdp3u4otsxe" path="res://Van.tscn" id="13_umdqk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1enmr"]
@@ -69,6 +71,8 @@ orange_peg_scene = ExtResource("7_b2yaj")
 green_peg_scene = ExtResource("7_6l3rs")
 
 [node name="HUD" parent="." unique_id=289833468 instance=ExtResource("7_10v3s")]
+bessie_portrait = ExtResource("10_hup21")
+moolinda_portrait = ExtResource("11_4cwgp")
 
 [node name="Gameover" parent="." unique_id=1886323533 instance=ExtResource("8_cptob")]
 layer = 4
