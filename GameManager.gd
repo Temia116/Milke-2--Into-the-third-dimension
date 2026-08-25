@@ -22,7 +22,6 @@ var balls_remaining: int = 10
 # --- Pegs ---
 var total_orange_pegs: int = 0
 var orange_pegs_hit: int = 0
-
 # --- Level ---
 const MAX_LEVEL: int = 3
 var current_level: int = 1

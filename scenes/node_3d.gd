@@ -4,6 +4,7 @@ extends Node3D
 @export var launch_speed: float = 30.0
 @onready var udder_spawn: Marker3D = $Cow/UdderSpawnPoint
 @onready var camera: Camera3D = $Camera3D
+@onready var cow: Node3D = $Cow
 
 var can_shoot: bool = true
 var aim_mesh: ImmediateMesh
@@ -81,6 +82,8 @@ func _shoot():
 		return
 	can_shoot = false
 	GameManager.on_ball_lost()
+	SFXManager.play_launch()
+	_play_launch_effect()
 	var ball = ball_scene.instantiate()
 	get_tree().root.add_child(ball)
 	ball.global_position = udder_spawn.global_position
@@ -92,6 +95,53 @@ func _shoot():
 		ball.scale = Vector3(3, 3, 3)
 		ball.start_bulldozer(_get_launch_velocity())
 		bessie_next_shot = false
+
+func _play_launch_effect():
+	# Squash-and-stretch recoil on the cow when firing - quick squash down,
+	# then a springy overshoot back to normal size.
+	if cow:
+		var base_scale = cow.scale
+		var tween = create_tween()
+		tween.tween_property(cow, "scale", base_scale * Vector3(1.12, 0.85, 1.12), 0.06)
+		tween.tween_property(cow, "scale", base_scale * Vector3(0.95, 1.08, 0.95), 0.08)
+		tween.tween_property(cow, "scale", base_scale, 0.12)
+
+	_spawn_milk_splash()
+
+func _spawn_milk_splash():
+	# Small one-shot particle burst at the udder for a bit of launch flair.
+	var particles = GPUParticles3D.new()
+	particles.emitting = true
+	particles.one_shot = true
+	particles.amount = 14
+	particles.lifetime = 0.4
+	particles.explosiveness = 1.0
+
+	var process_mat = ParticleProcessMaterial.new()
+	process_mat.direction = Vector3(0, -1, 0)
+	process_mat.spread = 35.0
+	process_mat.initial_velocity_min = 2.0
+	process_mat.initial_velocity_max = 4.5
+	process_mat.gravity = Vector3(0, -9.8, 0)
+	process_mat.scale_min = 0.08
+	process_mat.scale_max = 0.16
+	process_mat.color = Color(0.99, 0.98, 0.93, 1.0)  # creamy milk-white
+	particles.process_material = process_mat
+
+	var mesh = SphereMesh.new()
+	mesh.radius = 0.5
+	mesh.height = 1.0
+	var mat = StandardMaterial3D.new()
+	mat.albedo_color = Color(0.99, 0.98, 0.93, 1.0)
+	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	mesh.material = mat
+	particles.draw_pass_1 = mesh
+
+	get_tree().root.add_child(particles)
+	particles.global_position = udder_spawn.global_position
+
+	var timer = get_tree().create_timer(particles.lifetime + 0.3)
+	timer.timeout.connect(particles.queue_free)
 
 func _draw_aim_line():
 	aim_mesh.clear_surfaces()
@@ -183,4 +233,4 @@ func _toggle_pause_menu():
 
 func _on_ball_exited():
 	can_shoot = true
-	GameManager.reset_shot_multipliers() 
+	GameManager.reset_shot_multipliers()
