@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://dbhev6405q52o"]
+
+[ext_resource type="Script" uid="uid://b86rxgobxgyw8" path="res://GDS/WinScreen.gd" id="1_a03an"]
+[ext_resource type="VideoStream" uid="uid://dnix3urwtc6xf" path="res://Music and videos'/das und diddybludden (1).ogv" id="2_0eiwq"]
+
+[node name="WinScreen" type="CanvasLayer" unique_id=2056049492]
+script = ExtResource("1_a03an")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="." unique_id=1939722433]
+offset_right = 1925.0
+offset_bottom = 1076.0
+stream = ExtResource("2_0eiwq")
+expand = true
+loop = true
+
+[node name="Label" type="Label" parent="." unique_id=864837389]
+offset_left = 838.0
+offset_top = 378.0
+offset_right = 1072.0
+offset_bottom = 447.0
+theme_override_font_sizes/font_size = 50
+text = "YOU WIN!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=1637894882]
+offset_left = 838.0
+offset_top = 437.0
+offset_right = 1010.0
+offset_bottom = 506.0
+theme_override_font_sizes/font_size = 50
+text = "SCORE:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RetryButton" type="Button" parent="." unique_id=1501760177]
+offset_left = 836.0
+offset_top = 516.0
+offset_right = 1135.0
+offset_bottom = 593.0
+theme_override_font_sizes/font_size = 50
+text = "PLAY AGAIN"
+
+[node name="NextButton" type="Button" parent="." unique_id=326871586]
+offset_left = 802.0
+offset_top = 599.0
+offset_right = 1090.0
+offset_bottom = 676.0
+theme_override_font_sizes/font_size = 50
+text = "NEXT LEVEL"

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bnmoh2do5pn4j"
+path="res://.godot/imported/Kevin macleod - elevator music.mp3-0f3340dad40ae34634c2a029ea985767.mp3str"
+
+[deps]
+
+source_file="res://Music and videos'/Kevin macleod - elevator music.mp3"
+dest_files=["res://.godot/imported/Kevin macleod - elevator music.mp3-0f3340dad40ae34634c2a029ea985767.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

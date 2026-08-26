@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://drqib8j8cgbt8"
+path="res://.godot/imported/The fat rat - windfall.mp3-81a5839f624d12731f8b4c4f54f969cb.mp3str"
+
+[deps]
+
+source_file="res://Music and videos'/The fat rat - windfall.mp3"
+dest_files=["res://.godot/imported/The fat rat - windfall.mp3-81a5839f624d12731f8b4c4f54f969cb.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

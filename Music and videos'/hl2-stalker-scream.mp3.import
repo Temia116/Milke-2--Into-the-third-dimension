@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bbosw2eb0fnp"
+path="res://.godot/imported/hl2-stalker-scream.mp3-0b2b5c7ce571590c82b9e7db9943eff6.mp3str"
+
+[deps]
+
+source_file="res://Music and videos'/hl2-stalker-scream.mp3"
+dest_files=["res://.godot/imported/hl2-stalker-scream.mp3-0b2b5c7ce571590c82b9e7db9943eff6.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

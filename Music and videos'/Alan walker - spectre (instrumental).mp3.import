@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://lbxqyn42mjdi"
+path="res://.godot/imported/Alan walker - spectre (instrumental).mp3-34489698a8aec626ab658062a15a992e.mp3str"
+
+[deps]
+
+source_file="res://Music and videos'/Alan walker - spectre (instrumental).mp3"
+dest_files=["res://.godot/imported/Alan walker - spectre (instrumental).mp3-34489698a8aec626ab658062a15a992e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bgcvjd2tb2kv0"]
+
+[ext_resource type="Script" uid="uid://fd3fskoeixvy" path="res://GDS/peg.gd" id="1_1nhth"]
+[ext_resource type="PackedScene" uid="uid://sir44qu2m35h" path="res://glb/ORANGE BALL (needed to beat level).glb" id="1_jc2g8"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1nhth"]
+radius = 0.42546406
+
+[node name="OrangePeg" type="StaticBody3D" unique_id=1576095087]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+script = ExtResource("1_1nhth")
+
+[node name="ORANGE BALL (needed to beat level)" parent="." unique_id=1408215529 instance=ExtResource("1_jc2g8")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=398123827]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+shape = SubResource("SphereShape3D_1nhth")

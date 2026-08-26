@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bqs87m0i6hct6"
+path="res://.godot/imported/Kevin MacLeod - Electrodoodle.mp3-bb922495f166b4a7f71794448ec43281.mp3str"
+
+[deps]
+
+source_file="res://Music and videos'/Kevin MacLeod - Electrodoodle.mp3"
+dest_files=["res://.godot/imported/Kevin MacLeod - Electrodoodle.mp3-bb922495f166b4a7f71794448ec43281.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
